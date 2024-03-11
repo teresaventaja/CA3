@@ -12,7 +12,7 @@ public class CA3 {
 
     /**
      * Currently, there are three types of reports the college would
-like to see, but their needs may change in the future.
+like to see, but their needs may change in the future (must support adding more reports)
 ○ A Course Report, that should contain:
 
 Module	Programme	Number of students	Lecturer	Classroom
