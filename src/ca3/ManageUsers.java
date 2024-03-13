@@ -4,14 +4,13 @@
  */
 package ca3;
 
+import java.util.List;
+
 /**
  *
  * @author User
  */
-public class Lecturer extends User {
-    public Lecturer(String username, String password) {
-        super(username, password, "Lecturer");
-    }
-
-// I need to add Lecturer options
+public class ManageUsers {
+    private List<User> users; // Storing users
+    // Methods to add, modify, remove users...
 }

@@ -9,5 +9,6 @@ package ca3;
  * @author User
  */
 public interface ChangeCredentials {
-    
+    void changeUsername(String newUsername);
+    void changePassword(String newPassword);
 }

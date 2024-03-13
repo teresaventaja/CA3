@@ -8,6 +8,10 @@ package ca3;
  *
  * @author User
  */
-public class Officer {
-    
+public class Officer extends User {
+    public Officer(String username, String password) {
+        super(username, password, "Officer");
+    }
+
+// I need to add Officer options
 }
