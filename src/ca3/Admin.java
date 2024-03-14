@@ -9,12 +9,25 @@ package ca3;
  * @author User
  */
 public class Admin extends User {
-    public Admin(String username, String password) {
-        super(username, password, "admin");
+    private ManageUsers manageUsers;
+
+    public Admin(String username, String password, ManageUsers manageUsers) {
+        super(username, password, "admin"); // call parent
+        this.manageUsers = manageUsers; // use methods in ManageUaers
     }
 
-    // I need to add the ability to manage users, and such...
-        public void manageUsers() {
-        // add code
+    // add a new user
+    public void addUser(User user) {
+        manageUsers.addUser(user);
+    }
+
+    // delete an user
+    public void deleteUser(String username) {
+        manageUsers.deleteUser(username);
+    }
+
+    // modify user details
+    public void modifyUser(String username, String newUsername, String newPassword, String newRole) {
+        manageUsers.modifyUser(username, newUsername, newPassword, newRole);
     }
 }

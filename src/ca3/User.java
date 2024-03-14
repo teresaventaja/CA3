@@ -30,6 +30,22 @@ public abstract class User implements ChangeCredentials {
         this.password = newPassword;
     }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     // To add content if there are other common methods (login?)
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getRole() {
+        return role;
+    }
 }
 
