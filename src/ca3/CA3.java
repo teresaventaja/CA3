@@ -5,6 +5,7 @@
 package ca3;
 
 import static ca3.CourseReportVariables.fetchModuleInfo;
+import static ca3.StudentReportVariables.fetchStudentInfo;
 import java.util.List;
 
 /**
@@ -75,10 +76,20 @@ Change username and password
     String password = "Assword?24";
     String sqlFilePath = "C:\\Users\\User\\Desktop\\CourseReport.sql";
 
-    List<CourseReportConstructor> modules = fetchModuleInfo(url, user, password, sqlFilePath);
+
+    // Test if it works
+         /**
+    List<CourseReportConstructor> modules = fetchModuleInfo(url, user, password);
     for (CourseReportConstructor module : modules) {
         System.out.println(module.getModuleName() + " - " + module.getProgramme() + " - " + module.getNumberOfStudents() + " - " + module.getLecturerName() + " - " + module.getClassroom());
     }
+   *     */ 
+       
+       List<StudentReportConstructor> students = fetchStudentInfo(url, user, password);
+    for (StudentReportConstructor student : students) {
+        System.out.println(student.getStudent() + " - " + student.getProgramme() + " - " + student.getEnrolledModules() + " - " + student.getCompletedModulesAndGrades() + " - " + student.getToRepeatModules());
+    } 
+   
     }
     
 }
