@@ -4,6 +4,9 @@
  */
 package ca3;
 
+import static ca3.CourseReportVariables.fetchModuleInfo;
+import java.util.List;
+
 /**
  *
  * @author User
@@ -67,6 +70,15 @@ Change username and password
      */
     public static void main(String[] args) {
         // TODO code application logic here
+    String url = "jdbc:mysql://localhost:3306/ca3_2";
+    String user = "root";
+    String password = "Assword?24";
+    String sqlFilePath = "C:\\Users\\User\\Desktop\\CourseReport.sql";
+
+    List<CourseReportConstructor> modules = fetchModuleInfo(url, user, password, sqlFilePath);
+    for (CourseReportConstructor module : modules) {
+        System.out.println(module.getModuleName() + " - " + module.getProgramme() + " - " + module.getNumberOfStudents() + " - " + module.getLecturerName() + " - " + module.getClassroom());
+    }
     }
     
 }
