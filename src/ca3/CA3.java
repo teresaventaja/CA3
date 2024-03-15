@@ -5,6 +5,7 @@
 package ca3;
 
 import static ca3.CourseReportVariables.fetchModuleInfo;
+import static ca3.LecturerReportVariables.fetchLecturerInfo;
 import static ca3.StudentReportVariables.fetchStudentInfo;
 import java.util.List;
 
@@ -74,20 +75,23 @@ Change username and password
     String url = "jdbc:mysql://localhost:3306/ca3_2";
     String user = "root";
     String password = "Assword?24";
-    String sqlFilePath = "C:\\Users\\User\\Desktop\\CourseReport.sql";
-
-
+   
     // Test if it works
          /**
     List<CourseReportConstructor> modules = fetchModuleInfo(url, user, password);
     for (CourseReportConstructor module : modules) {
         System.out.println(module.getModuleName() + " - " + module.getProgramme() + " - " + module.getNumberOfStudents() + " - " + module.getLecturerName() + " - " + module.getClassroom());
     }
-   *     */ 
-       
-       List<StudentReportConstructor> students = fetchStudentInfo(url, user, password);
+    * 
+    *        List<StudentReportConstructor> students = fetchStudentInfo(url, user, password);
     for (StudentReportConstructor student : students) {
         System.out.println(student.getStudent() + " - " + student.getProgramme() + " - " + student.getEnrolledModules() + " - " + student.getCompletedModulesAndGrades() + " - " + student.getToRepeatModules());
+    } 
+   *     */ 
+           // Test if it works
+       List<LecturerReportConstructor> lecturers = fetchLecturerInfo(url, user, password);
+    for (LecturerReportConstructor lecturer : lecturers) {
+        System.out.println(lecturer.getLecturer() + " - " + lecturer.getRole() + " - " + lecturer.getModulesTeaching() + " - " + lecturer.getNumberOfStudents() + " - " + lecturer.getModulesCanTeach());
     } 
    
     }
