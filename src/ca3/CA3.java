@@ -6,7 +6,16 @@ package ca3;
 
 import static ca3.CourseReportVariables.fetchModuleInfo;
 import static ca3.LecturerReportVariables.fetchLecturerInfo;
+import static ca3.OutputLecturer.outputToFile;
+import static ca3.OutputLecturer.consoleOutput;
+import static ca3.OutputLecturer.outputToCSV;
 import static ca3.StudentReportVariables.fetchStudentInfo;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -74,25 +83,34 @@ Change username and password
         // TODO code application logic here
     String url = "jdbc:mysql://localhost:3306/ca3_2";
     String user = "root";
-    String password = "Assword?24";
+    String password = "root24";
+    String filePath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\LecturerReport.txt";
+    String csvPath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\LecturerReport.csv";
    
     // Test if it works
-         /**
+    
+    /**
     List<CourseReportConstructor> modules = fetchModuleInfo(url, user, password);
     for (CourseReportConstructor module : modules) {
         System.out.println(module.getModuleName() + " - " + module.getProgramme() + " - " + module.getNumberOfStudents() + " - " + module.getLecturerName() + " - " + module.getClassroom());
     }
-    * 
-    *        List<StudentReportConstructor> students = fetchStudentInfo(url, user, password);
+     
+    List<StudentReportConstructor> students = fetchStudentInfo(url, user, password);
     for (StudentReportConstructor student : students) {
         System.out.println(student.getStudent() + " - " + student.getProgramme() + " - " + student.getEnrolledModules() + " - " + student.getCompletedModulesAndGrades() + " - " + student.getToRepeatModules());
-    } 
-   *     */ 
-           // Test if it works
-       List<LecturerReportConstructor> lecturers = fetchLecturerInfo(url, user, password);
-    for (LecturerReportConstructor lecturer : lecturers) {
-        System.out.println(lecturer.getLecturer() + " - " + lecturer.getRole() + " - " + lecturer.getModulesTeaching() + " - " + lecturer.getNumberOfStudents() + " - " + lecturer.getModulesCanTeach());
-    } 
+    }
+    */ 
+    
+    // Console output for lecturer report
+    
+    consoleOutput(url, user, password);
+    
+    // File output for lecturer report
+   // outputToFile(url, user, password, filePath);
+    
+    // CSV output for lecturer report
+    outputToCSV(url, user, password, csvPath);
+    
    
     }
     
