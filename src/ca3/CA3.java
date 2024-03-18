@@ -9,6 +9,9 @@ import static ca3.LecturerReportVariables.fetchLecturerInfo;
 import static ca3.OutputLecturer.outputToFile;
 import static ca3.OutputLecturer.consoleOutput;
 import static ca3.OutputLecturer.outputToCSV;
+import static ca3.OutputStudent.consoleStudent;
+import static ca3.OutputStudent.studentToCSV;
+import static ca3.OutputStudent.studentToFile;
 import static ca3.StudentReportVariables.fetchStudentInfo;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -86,6 +89,8 @@ Change username and password
     String password = "root24";
     String filePath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\LecturerReport.txt";
     String csvPath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\LecturerReport.csv";
+    String studentFilePath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\StudentReport.txt";
+    String studentCSVPath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\StudentReport.csv";
    
     // Test if it works
     
@@ -103,13 +108,13 @@ Change username and password
     
     // Console output for lecturer report
     
-    consoleOutput(url, user, password);
+    consoleStudent(url, user, password);
     
     // File output for lecturer report
-   // outputToFile(url, user, password, filePath);
+ // studentToFile(url, user, password, studentFilePath);
     
     // CSV output for lecturer report
-    outputToCSV(url, user, password, csvPath);
+  //  studentToCSV(url, user, password, studentCSVPath);
     
    
     }

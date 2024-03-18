@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ca3;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -13,14 +14,13 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.List;
 
-
 /**
  *
  * @author User
  */
-public class OutputLecturer {
+public class OutputStudent {
     
-    String url = "jdbc:mysql://localhost:3306/ca3_2";
+     String url = "jdbc:mysql://localhost:3306/ca3_2";
     String user = "root";
     String password = "root24";
     
@@ -34,24 +34,24 @@ public class OutputLecturer {
     }
 
     // Method to output rows in the console
-    public static void consoleRowsLecturer(List<LecturerReportConstructor> lecturers) {
-        for (LecturerReportConstructor lecturer : lecturers) {
-            System.out.println(lecturer.getLecturer() + " - " + lecturer.getRole() + " - " + lecturer.getModulesTeaching() + " - " + lecturer.getNumberOfStudents() + " - " + lecturer.getModulesCanTeach());
+    public static void consoleRowsStudent(List<StudentReportConstructor> students) {
+        for (StudentReportConstructor student : students) {
+            System.out.println(student.getStudent() + " - " +student.getProgramme() + " - " + student.getEnrolledModules() + " - " + student.getCompletedModulesAndGrades() + " - " + student.getToRepeatModules());
         }
     }
     
     // Output method to call in Main - Print in the console
-    public static void consoleOutput(String url, String user, String password) {
+    public static void consoleStudent(String url, String user, String password) {
     
-    List<LecturerReportConstructor> lecturers = LecturerReportVariables.fetchLecturerInfo(url, user, password);
+    List<StudentReportConstructor> students = StudentReportVariables.fetchStudentInfo(url, user, password);
         
     try (Connection conn = DriverManager.getConnection(url, user, password);
-         PreparedStatement pstmt = conn.prepareStatement(LecturerReportVariables.sql);
-         ResultSet rs = pstmt.executeQuery()) {
+        PreparedStatement pstmt = conn.prepareStatement(StudentReportVariables.sql);
+        ResultSet rs = pstmt.executeQuery()) {
 
         ResultSetMetaData metaData = rs.getMetaData();
         consoleHeadings(metaData); // Print column headings
-        consoleRowsLecturer(lecturers); // Print rows
+        consoleRowsStudent(students); // Print rows
     } catch (SQLException e) {
         System.err.println("SQL error.");
         e.printStackTrace();
@@ -68,25 +68,25 @@ public class OutputLecturer {
     }
 
     // Print rows in a file
-    public static void printRowsToFile(List<LecturerReportConstructor> lecturers, PrintWriter writer) {
-        for (LecturerReportConstructor lecturer : lecturers) {
-            writer.println(lecturer.getLecturer() + " - " + lecturer.getRole() + " - " + lecturer.getModulesTeaching() + " - " + lecturer.getNumberOfStudents() + " - " + lecturer.getModulesCanTeach());
+    public static void printRowsToFile(List<StudentReportConstructor> students, PrintWriter writer) {
+        for (StudentReportConstructor student : students) {
+            writer.println(student.getStudent() + " - " + student.getProgramme() + " - " + student.getEnrolledModules() + " - " + student.getCompletedModulesAndGrades() + " - " + student.getToRepeatModules());
         }
     }
 
     // Output method to call in Main - report in a .txt file
-    public static void outputToFile(String url, String user, String password, String filePath) {
+    public static void studentToFile(String url, String user, String password, String studentFilePath) {
 
-        List<LecturerReportConstructor> lecturers = LecturerReportVariables.fetchLecturerInfo(url, user, password);
+        List<StudentReportConstructor> students = StudentReportVariables.fetchStudentInfo(url, user, password);
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement pstmt = conn.prepareStatement(LecturerReportVariables.sql); 
              ResultSet rs = pstmt.executeQuery();
-             PrintWriter writer = new PrintWriter(filePath)) {
+             PrintWriter writer = new PrintWriter(studentFilePath)) {
 
             ResultSetMetaData metaData = rs.getMetaData();
             printHeadingsToFile(metaData, writer); // Column headings to file
-            printRowsToFile(lecturers, writer); // Rows information to file
+            printRowsToFile(students, writer); // Rows information to file
             
         } catch (SQLException e) {
             System.err.println("SQL error: " + e.getMessage());
@@ -107,24 +107,24 @@ public class OutputLecturer {
     }
 
     // Rows to CSV
-    public static void printRowsToCSV(List<LecturerReportConstructor> lecturers, PrintWriter writer) {
-        for (LecturerReportConstructor lecturer : lecturers) {
-            writer.println("\"" + lecturer.getLecturer() + "\",\"" + lecturer.getRole() + "\",\"" + lecturer.getModulesTeaching() + "\",\"" + lecturer.getNumberOfStudents() + "\",\"" + lecturer.getModulesCanTeach() + "\"");
+    public static void printRowsToCSV(List<StudentReportConstructor> students, PrintWriter writer) {
+        for (StudentReportConstructor student : students) {
+            writer.println("\"" + student.getStudent() + "\",\"" + student.getProgramme() + "\",\"" + student.getEnrolledModules() + "\",\"" + student.getCompletedModulesAndGrades() + "\",\"" + student.getToRepeatModules() + "\"");
         }
     }
 
     // Output method to call in Main - report in CSV format
-    public static void outputToCSV(String url, String user, String password, String csvPath) {
-        List<LecturerReportConstructor> lecturers = LecturerReportVariables.fetchLecturerInfo(url, user, password);
+    public static void studentToCSV(String url, String user, String password, String csvPath) {
+        List<StudentReportConstructor> students = StudentReportVariables.fetchStudentInfo(url, user, password);
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
-            PreparedStatement pstmt = conn.prepareStatement(LecturerReportVariables.sql);
+            PreparedStatement pstmt = conn.prepareStatement(StudentReportVariables.sql);
             ResultSet rs = pstmt.executeQuery();
             PrintWriter writer = new PrintWriter(csvPath)) {
 
             ResultSetMetaData metaData = rs.getMetaData();
             printHeadingsToCSV(metaData, writer); // Column headings to CSV
-            printRowsToCSV(lecturers, writer); // Rows information to CSV
+            printRowsToCSV(students, writer); // Rows information to CSV
             
         } catch (SQLException e) {
             System.err.println("SQL error: " + e.getMessage());
