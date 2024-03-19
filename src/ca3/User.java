@@ -19,7 +19,7 @@ public abstract class User implements ChangeCredentials {
         this.role = role;
     }
 
-    // I may need to sue these methods for all users
+    // I may need to use these methods for all users
     @Override
     public void changeUsername(String newUsername) {
         this.username = newUsername;

@@ -5,6 +5,7 @@
 package ca3;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -48,5 +49,12 @@ public class ManageUsers {
         }
         return null; // User not found
     }
+    
+        // Method to return a list of all users
+    public List<User> getUsers() {
+        return Collections.unmodifiableList(users);
+    }
+    
+    
 }
 
