@@ -11,6 +11,11 @@ import java.util.Scanner;
  * @author User
  */
 public class Officer extends User {
+    
+    String url = "jdbc:mysql://localhost:3306/ca3_2"; // Adjust these values accordingly
+    String user = "root";
+    String password = "root24";
+    
     public Officer(String username, String password) {
         super(username, password, "OFFICER");
     }
@@ -38,7 +43,7 @@ public class Officer extends User {
                     generateLecturerReport(scanner);
                     break;
                 case 2:
-                    generateStudentReport();
+                    generateStudentReport(scanner);
                     break;
                 case 3:
                     generateCourseReport(scanner); 
@@ -59,10 +64,37 @@ public class Officer extends User {
     }
 
 
-    private void generateStudentReport() {
-        // Placeholder for future implementation
-        System.out.println("Generating Student Report...");
+private void generateStudentReport(Scanner scanner) {
+    System.out.println("Select the report format:");
+    System.out.println("1. TXT format");
+    System.out.println("2. CSV format");
+    System.out.println("3. Console output");
+    int formatChoice = scanner.nextInt();
+    scanner.nextLine(); // Consume the newline left-over
+
+    String studentFilePath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\StudentReport.txt";
+    String studentCSVPath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\StudentReport.csv";
+
+    switch (formatChoice) {
+        case 1:
+            // Generate report in TXT format
+            OutputStudent.studentToFile(url, user, password, studentFilePath);
+            System.out.println("Student report generated in TXT format at " + studentFilePath);
+            break;
+        case 2:
+            // Generate report in CSV format
+            OutputStudent.studentToCSV(url, user, password, studentCSVPath);
+            System.out.println("Student report generated in CSV format at " + studentCSVPath);
+            break;
+        case 3:
+            // Generate report in the console
+            OutputStudent.consoleStudent(url, user, password);
+            break;
+        default:
+            System.out.println("Invalid option. Please select a valid format.");
+            break;
     }
+}
 
 private void generateCourseReport(Scanner scanner) {
     System.out.println("Select the report format:");
@@ -72,9 +104,6 @@ private void generateCourseReport(Scanner scanner) {
     int formatChoice = scanner.nextInt();
     scanner.nextLine(); // Consume the newline left-over
 
-    String url = "jdbc:mysql://localhost:3306/ca3_2"; // Adjust these values accordingly
-    String user = "root";
-    String password = "root24";
     String courseFilePath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\CourseReport.txt";
     String courseCSVPath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\CourseReport.csv";
 
@@ -109,10 +138,6 @@ private void generateLecturerReport(Scanner scanner) {
     scanner.nextLine(); // Consume the newline left-over
 
 
-    // Database connection details
-    String url = "jdbc:mysql://localhost:3306/ca3_2";
-    String user = "root";
-    String password = "root24";
     String filePath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\LecturerReport.txt";
     String csvPath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\LecturerReport.csv";
 
