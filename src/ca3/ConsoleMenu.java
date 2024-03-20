@@ -99,7 +99,9 @@ public class ConsoleMenu {
                 ((Officer) user).handleOfficerActions(scanner, userManager, this);
             } else if (user instanceof Admin) {
                 ((Admin) user).handleAdminActions(scanner, userManager, this);
-            }
+            } else if (user instanceof Lecturer) {
+                ((Lecturer) user).handleLecturerActions(scanner, userManager, this);
+            } 
             setShowLoginMenu(true);
         } else {
             System.out.println("Login failed. Role does not match.");

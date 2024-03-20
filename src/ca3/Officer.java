@@ -35,7 +35,7 @@ public class Officer extends User {
             scanner.nextLine(); // Consume the newline left-over
             switch (choice) {
                 case 1:
-                    generateLecturerReport();
+                    generateLecturerReport(scanner);
                     break;
                 case 2:
                     generateStudentReport();
@@ -58,10 +58,6 @@ public class Officer extends User {
         } while (choice != 6);
     }
 
-    private void generateLecturerReport() {
-        // Placeholder for future implementation
-        System.out.println("Generating Lecturer Report...");
-    }
 
     private void generateStudentReport() {
         // Placeholder for future implementation
@@ -97,6 +93,43 @@ private void generateCourseReport(Scanner scanner) {
             // Generate report in the console
             outputCourse.consoleCourse(url, user, password);
             System.out.println("Report displayed in console.");
+            break;
+        default:
+            System.out.println("Invalid option. Please select a valid format.");
+            break;
+    }
+}
+
+private void generateLecturerReport(Scanner scanner) {
+    System.out.println("Select the report format:");
+    System.out.println("1. TXT format");
+    System.out.println("2. CSV format");
+    System.out.println("3. Console output");
+    int formatChoice = scanner.nextInt();
+    scanner.nextLine(); // Consume the newline left-over
+
+
+    // Database connection details
+    String url = "jdbc:mysql://localhost:3306/ca3_2";
+    String user = "root";
+    String password = "root24";
+    String filePath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\LecturerReport.txt";
+    String csvPath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\LecturerReport.csv";
+
+    switch (formatChoice) {
+        case 1:
+            // Generate report in TXT format
+            OutputLecturer.outputToFile(url, user, password, filePath);
+            System.out.println("Report generated in TXT format at " + filePath);
+            break;
+        case 2:
+            // Generate report in CSV format
+            OutputLecturer.outputToCSV(url, user, password, csvPath);
+            System.out.println("Report generated in CSV format at " + csvPath);
+            break;
+        case 3:
+            // Generate report in the console
+            OutputLecturer.consoleOutput(url, user, password);
             break;
         default:
             System.out.println("Invalid option. Please select a valid format.");
