@@ -10,8 +10,17 @@ package ca3;
  */
 public class Officer extends User {
     public Officer(String username, String password) {
-        super(username, password, "Officer");
+        super(username, password, "OFFICER");
     }
-
-// I need to add Officer options
-}
+        
+    @Override
+    public void showOptions() {
+        System.out.println("OFFICER MENU");
+        System.out.println("1. Generate Lecturer Report");
+        System.out.println("2. Generate Student Report");
+        System.out.println("3. Generate Course Report");
+        System.out.println("4. Change username");
+        System.out.println("5. Change password");
+        System.out.println("6. Logout");
+    }
+    }

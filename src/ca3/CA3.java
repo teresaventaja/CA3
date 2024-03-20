@@ -118,18 +118,14 @@ Change username and password
     
     // CSV output for lecturer report
   //courseToCSV(url, user, password, courseCSVPath);
-    
-        ManageUsers manageUsers = new ManageUsers();
 
-        // Create an Admin instance3
+        UserManager userManager = new UserManager();
+       // ConsoleMenu consoleMenu = new ConsoleMenu(userManager);
         
-        Admin admin = new Admin("admin", "java", manageUsers);
 
-        // Initialize the ConsoleMenu with manageUsers and admin
-        ConsoleMenu consoleMenu = new ConsoleMenu(manageUsers, admin);
 
-        // Start the menu flow
-        consoleMenu.displayLoginMenu(false, false);
+      //  consoleMenu.displayMenu();
+                userManager.displayUsers();
     }
    
     

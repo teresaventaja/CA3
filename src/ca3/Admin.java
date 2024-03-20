@@ -4,190 +4,134 @@
  */
 package ca3;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
+
 
 /**
  *
  * @author User
  */
 public class Admin extends User {
-    private Scanner scanner;
-    private ManageUsers manageUsers;
-    public static String adminUsername;
-    public static String adminPassword;
 
-    public Admin(String username, String password, ManageUsers manageUsers) {
-        super(username, password, "admin");
-        Admin.adminUsername = username;
-        Admin.adminPassword = password;
-        this.manageUsers = manageUsers;
-        this.scanner = new Scanner(System.in);
+    public Admin(String username, String password) {
+        super(username, password, "ADMIN");
+    }
+
+    @Override
+    public void showOptions() {
+        System.out.println("ADMIN MENU");
+        System.out.println("1. Add user");
+        System.out.println("2. Change username");
+        System.out.println("3. Change password");
+        System.out.println("4. Logout");
+        System.out.println("5. Modify user");
+        System.out.println("6. Delete user");
     }
     
-        public static void setInitialCredentials(String username, String password) {
-        Admin.adminUsername = username;
-        Admin.adminPassword = password;
-    }
-
-    // add a new user
-public void addUser() {
-    scanner = new Scanner(System.in); 
-    System.out.print("Enter username: ");
-    String username = scanner.nextLine();
-    System.out.print("Enter password: ");
-    String password = scanner.nextLine();
-    System.out.print("Enter role (Admin/Officer/Lecturer): ");
-    String role = scanner.nextLine();
-
-    User newUser = null;
-    switch (role.toLowerCase()) {
-        case "Admin":
-            System.out.println("Creating new admins is not supported through this method.");
+    public void processAdminCommand(int choice, Scanner scanner, UserManager userManager, ConsoleMenu consoleMenu) {
+    switch (choice) {
+        case 1:
+            System.out.println("Enter username:");
+            String username = scanner.nextLine();
+            System.out.println("Enter password:");
+            String password = scanner.nextLine();
+            System.out.println("Enter role (OFFICER/LECTURER):");
+            String role = scanner.nextLine();
+            userManager.addUser(username, password, role);
             break;
-        case "Officer":
-            newUser = new Officer(username, password);
+        case 2:
+            System.out.println("Enter old username:");
+            String oldUsername = scanner.nextLine();
+            System.out.println("Enter new username:");
+            String newUsername = scanner.nextLine();
+            if (userManager.modifyUsername(oldUsername, newUsername)) {
+                System.out.println("Username successfully changed.");
+            } else {
+                System.out.println("Failed to change username.");
+            }
             break;
-        case "Lecturer":
-            newUser = new Lecturer(username, password);
+        case 3:
+            System.out.println("Enter username:");
+            String usr = scanner.nextLine();
+            System.out.println("Enter new password:");
+            String newPassword = scanner.nextLine();
+            if (userManager.modifyPassword(usr, newPassword)) {
+                System.out.println("Password successfully changed.");
+            } else {
+                System.out.println("Failed to change password.");
+            }
+            break;
+        case 4:
+            // Logout logic
+            consoleMenu.setShowLoginMenu(true); // This will allow the login menu to be displayed again
+            System.out.println("Logged out successfully.");
+            break;
+        case 5:
+            modifyUser(scanner, userManager);
+            break;
+        case 6:
+            deleteUser(scanner, userManager);
             break;
         default:
-            System.out.println("Invalid role. Make sure the first letter is capitalized.");
-            return; // Exit the method if the role is invalid
-    }
-
-    if (newUser != null) {
-        manageUsers.addUser(newUser);
-        System.out.println("User added successfully.");
+            System.out.println("Invalid option.");
     }
 }
+    
+     private void modifyUser(Scanner scanner, UserManager userManager) {
+     System.out.println("Enter the username of the user you want to modify:");
+    String oldUsername = scanner.nextLine();
 
+    System.out.println("Enter the new username for the user (press Enter to skip):");
+    String newUsername = scanner.nextLine();
 
-public void changeUserCredentials() {
-    
-    System.out.println("Change User Credentials");
-    
-    // Offer a choice between updating admin's own credentials or another user's
-    System.out.println("1. Update my (admin) credentials");
-    System.out.println("2. Update another user's credentials");
-    System.out.print("Select an option: ");
- 
-    
-    int choice = 0;
-    try {
+    System.out.println("Enter the new password for the user (press Enter to skip):");
+    String newPassword = scanner.nextLine();
+
+    boolean isUpdated = false;
+
+    // Update the username if a new username is provided
+    if (!newUsername.isEmpty()) {
+        boolean usernameUpdated = userManager.modifyUsername(oldUsername, newUsername);
+        if (usernameUpdated) {
+            System.out.println("Username updated successfully.");
+            isUpdated = true;
+            oldUsername = newUsername; // Update reference for password change if needed
+        } else {
+            System.out.println("Failed to update username.");
+        }
+    }
+
+    // Update the password if a new password is provided
+    if (!newPassword.isEmpty()) {
+        boolean passwordUpdated = userManager.modifyPassword(newUsername.isEmpty() ? oldUsername : newUsername, newPassword);
+        if (passwordUpdated) {
+            System.out.println("Password updated successfully.");
+            isUpdated = true;
+        } else {
+            System.out.println("Failed to update password.");
+        }
+    }
+
+    if (!isUpdated) {
+        System.out.println("No updates made. Please provide at least a new username or a new password.");
+    }
+}
+     
+         private void deleteUser(Scanner scanner, UserManager userManager) {
+        System.out.println("Enter the username of the user you want to delete:");
+        String username = scanner.nextLine();
+        userManager.deleteUser(username);
+    }
+         
+         
+         public void handleAdminActions(Scanner scanner, UserManager userManager, ConsoleMenu consoleMenu) {
+    int choice;
+    do {
+        showOptions(); // Show admin menu options
         choice = scanner.nextInt();
-    } catch (InputMismatchException e) {
-        scanner.nextLine(); // Clear the buffer of the wrong input
-        System.out.println("Please enter a valid number for your choice.");
-        return; // Exit the method to prevent further execution
-    }
-    scanner.nextLine(); // Always consume the newline character
-    
-    if (choice == 1) {
-        // Directly changing the admin's credentials
-        System.out.print("Enter new username for admin: ");
-        Admin.adminUsername = scanner.nextLine();
-        System.out.print("Enter new password for admin: ");
-        Admin.adminPassword = scanner.nextLine();
-                
-        System.out.println("Admin credentials updated successfully.");
-    } else if (choice == 2) {
-        System.out.print("Enter the username of the user to update: ");
-        String currentUsername = scanner.nextLine();
-        
-        // Proceed to update another user's credentials
-        User userToUpdate = manageUsers.findUserByUsername(currentUsername);
-
-        if (userToUpdate != null) {
-            System.out.print("Enter new username: ");
-            String newUsername = scanner.nextLine();
-            System.out.print("Enter new password: ");
-            String newPassword = scanner.nextLine();
-
-            // Update user credentials
-            userToUpdate.changeUsername(newUsername);
-            userToUpdate.changePassword(newPassword);
-
-            System.out.println("User credentials updated successfully.");
-        } else {
-            System.out.println("User not found.");
-        }
-    } else {
-        System.out.println("Invalid choice.");
-    }
+        scanner.nextLine(); // Consume the newline left-over
+        processAdminCommand(choice, scanner, userManager, consoleMenu);
+    } while (choice != 4); // Assuming option 4 is for logout
 }
-
-public void modifyUser() {
-    System.out.println("Modify User");
-
-    System.out.print("Enter the current username of the user to modify: ");
-    String currentUsername = scanner.nextLine();
-
-    // Check if the user to modify is the admin
-    if (Admin.adminUsername.equals(currentUsername)) {
-        // Handle admin credentials update
-        System.out.print("Enter new username for admin: ");
-        String newAdminUsername = scanner.nextLine();
-        System.out.print("Enter new password for admin: ");
-        String newAdminPassword = scanner.nextLine();
-
-        if (!newAdminUsername.isEmpty() || !newAdminPassword.isEmpty()) {
-            Admin.adminUsername = !newAdminUsername.isEmpty() ? newAdminUsername : Admin.adminUsername;
-            Admin.adminPassword = !newAdminPassword.isEmpty() ? newAdminPassword : Admin.adminPassword;
-            System.out.println("Admin credentials updated successfully.");
-        } else {
-            System.out.println("No changes detected for admin credentials.");
-        }
-    } else {
-        // Proceed with non-admin users
-        User userToModify = manageUsers.findUserByUsername(currentUsername);
-        if (userToModify != null) {
-            System.out.print("Enter new username (press Enter to keep current): ");
-            String newUsername = scanner.nextLine().trim();
-            System.out.print("Enter new password (press Enter to keep current): ");
-            String newPassword = scanner.nextLine().trim();
-
-            // Assuming role change is not applicable for admin, as admin is a singleton in this context
-            if (!newUsername.isEmpty() || !newPassword.isEmpty()) {
-                manageUsers.deleteUser(currentUsername); // Remove the old user entry first
-                User newUser;
-                if (userToModify instanceof Officer) {
-                    newUser = new Officer(newUsername.isEmpty() ? userToModify.getUsername() : newUsername, newPassword.isEmpty() ? userToModify.getPassword() : newPassword);
-                } else if (userToModify instanceof Lecturer) {
-                    newUser = new Lecturer(newUsername.isEmpty() ? userToModify.getUsername() : newUsername, newPassword.isEmpty() ? userToModify.getPassword() : newPassword);
-                } else {
-                    System.out.println("Error: Unrecognized user type.");
-                    return;
-                }
-                manageUsers.addUser(newUser);
-                System.out.println("User modified successfully.");
-            } else {
-                System.out.println("No changes detected. User not modified.");
-            }
-        } else {
-            System.out.println("User not found.");
-        }
-    }
-}
-
-
-    // delete an user
-   public void deleteUser() {
-    System.out.println("Delete User");
-
-    System.out.print("Enter the username of the user to delete: ");
-    String username = scanner.nextLine();
-
-    // Check if the user exists before attempting to delete
-    User userToDelete = manageUsers.findUserByUsername(username);
-    
-    if (userToDelete != null) {
-        manageUsers.deleteUser(username);
-        System.out.println("User '" + username + "' has been deleted successfully.");
-    } else {
-        System.out.println("User not found. No user has been deleted.");
-    }
-}
-
-
+     
 }

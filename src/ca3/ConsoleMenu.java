@@ -4,6 +4,7 @@
  */
 package ca3;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 /**
@@ -11,146 +12,107 @@ import java.util.Scanner;
  * @author User
  */
 public class ConsoleMenu {
+    
+    private UserManager userManager;
     private Scanner scanner;
-    private boolean officerExists = false; // Initially, no Officer exists
-    private boolean lecturerExists = false; // Initially, no Lecturer exists
-    private ManageUsers users; // may need to use ManageUsers as the array with users is there
-    private Admin admin;
-    
-    public ConsoleMenu(ManageUsers users, Admin admin) {
+    private boolean exitApplication = false;
+    private boolean showLoginMenu = true; 
+
+    public ConsoleMenu(UserManager userManager) {
+        this.userManager = userManager;
         this.scanner = new Scanner(System.in);
-        this.users = users;
-        this.admin = admin;
     }
     
-    // This method checks if officers and lecturers exist within the ManageUsers' users list
-    public void checkRolesExistence() {
-        boolean officerExists = users.getUsers().stream().anyMatch(user -> "Officer".equals(user.getRole()));
-        boolean lecturerExists = users.getUsers().stream().anyMatch(user -> "Lecturer".equals(user.getRole()));
-        
-        displayLoginMenu(officerExists, lecturerExists);
+    public void setShowLoginMenu(boolean showLoginMenu) {
+        this.showLoginMenu = showLoginMenu;
     }
     
-    private void verifyAdminLogin() {
-    System.out.print("Enter admin username: ");
-    String username = scanner.nextLine();
-    System.out.print("Enter admin password: ");
-    String password = scanner.nextLine();
-
-    if (Admin.adminUsername.equals(username) && Admin.adminPassword.equals(password)) {
-        displayAdminMenu();
-    } else {
-        System.out.println("Incorrect username or password.");
+    public void displayMenu() {
+        while (!exitApplication) {
+            if (showLoginMenu) {
+                showLoginMenu();
+            }
+        }
     }
-    
-}
 
-
-    public void displayLoginMenu(boolean officerExists, boolean lecturerExists) {
-        System.out.println("Login menu: ");
-        System.out.println("1. Login as Admin: ");
-        if (officerExists) {
+    public void showLoginMenu() {
+        System.out.println("LOGIN MENU");
+        if (userManager.hasNonAdminUsers()) {
+            System.out.println("1. Login as Admin");
             System.out.println("2. Login as Officer");
-        }
-        if (lecturerExists) {
             System.out.println("3. Login as Lecturer");
+            System.out.println("4. Exit Application"); 
+        } else {
+            System.out.println("1. Login as Admin");
+            System.out.println("2. Exit Application"); 
         }
-        System.out.println("4. Exit");
-        
-        System.out.print("Select an option: ");
-        int option = scanner.nextInt();
-        scanner.nextLine();
-        
-        switch (option) {
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+
+        switch (choice) {
             case 1:
-                verifyAdminLogin();
+                // Perform admin login
+                performLogin("ADMIN");
                 break;
-            case 2:
-                if (officerExists) displayOfficerMenu();
+                        case 2:
+                if (userManager.hasNonAdminUsers()) {
+                    // Perform officer login
+                    performLogin("OFFICER");
+                } else {
+                    exitApplication(); // Directly exit if no non-admin users
+                }
                 break;
             case 3:
-                if (lecturerExists) displayLecturerMenu();
+                // Perform lecturer login, if option 3 is valid
+                if (userManager.hasNonAdminUsers()) {
+                    performLogin("LECTURER");
+                } else {
+                    System.out.println("Invalid choice."); // Handle invalid choice differently if you wish
+                }
                 break;
             case 4:
-                System.exit(0);
+                // Exit application, if option 4 is valid
+                if (userManager.hasNonAdminUsers()) {
+                    exitApplication();
+                } else {
+                    System.out.println("Invalid choice.");
+                }
                 break;
             default:
-                System.out.println("Invalid option. Please try again.");
-                displayLoginMenu(officerExists, lecturerExists);
+                System.out.println("Invalid choice.");
+                break;
         }
     }
 
-    public void displayAdminMenu() {
-    boolean inAdminMenu = true;
-    while (inAdminMenu) {
-        System.out.println("Admin Menu:");
-        System.out.println("1. Add user");
-        System.out.println("2. Change username and password");
-        System.out.println("3. Logout");
+    private void performLogin(String role) {
+        System.out.println("Enter username:");
+        String username = scanner.nextLine();
+        System.out.println("Enter password:");
+        String password = scanner.nextLine();
 
-        // Additional options if Officer and Lecturer exist
-        if (officerExists && lecturerExists) {
-            System.out.println("4. Modify user");
-            System.out.println("5. Delete user");
-            System.out.println("6. Back to the login menu");
+        Optional<User> userOptional = userManager.getUser(username, password);
+
+    if (userOptional.isPresent()) {
+        User user = userOptional.get();
+        if (user.getRole().equals(role)) {
+            if (user instanceof Admin) {
+                // Pass 'this' as the ConsoleMenu reference
+                ((Admin) user).handleAdminActions(scanner, userManager, this);
+                // Set showLoginMenu flag here if needed to control login menu display
+                setShowLoginMenu(true);
+            }
+            // Handle other roles accordingly
+        } else {
+            System.out.println("Login failed. Role does not match.");
         }
-
-        System.out.print("Select an option: ");
-        int option = scanner.nextInt();
-        
-        switch (option) {
-        case 1:
-            admin.addUser();
-            break;
-        case 2:
-            admin.changeUserCredentials();
-            break;
-        case 3:
-            System.out.println("Log out successful.");
-            inAdminMenu = false;
-            break;
-        case 4:
-            admin.modifyUser();
-            break;
-        case 5:
-            admin.deleteUser();
-            break;
-        case 6:
-            inAdminMenu = false;
-            break;
-        default:
-            System.out.println("Invalid option. Please try again.");
-            displayAdminMenu();
-            break;
-        }
+    } else {
+        System.out.println("User not found or password incorrect.");
     }
-    }
-
-    public void displayOfficerMenu() {
-        System.out.println("Officer Menu:");
-        System.out.println("1. Generate Lecturer Report");
-        System.out.println("2. Generate Student Report");
-        System.out.println("3. Generate Course Report");
-        System.out.println("4. Change username and password");
-        System.out.println("5. Logout");
-
-        System.out.print("Select an option: ");
-        int option = scanner.nextInt();
-        // Placeholder for handling user's selection
-    }
-
-    public void displayLecturerMenu() {
-        System.out.println("Lecturer Menu:");
-        System.out.println("1. Generate Lecturer Report");
-        System.out.println("2. Change username and password");
-        System.out.println("3. Logout");
-
-        System.out.print("Select an option: ");
-        int option = scanner.nextInt();
-        // Placeholder for handling user's selection
-    }
-
-
-   
 }
 
+    
+        public void exitApplication() {
+        this.exitApplication = true;
+        scanner.close(); // Remember to close the scanner when the application exits
+    }
+}

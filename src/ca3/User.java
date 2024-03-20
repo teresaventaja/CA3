@@ -8,7 +8,7 @@ package ca3;
  *
  * @author User
  */
-public abstract class User implements ChangeCredentials {
+public abstract class User {
     protected String username;
     protected String password;
     protected String role;
@@ -19,33 +19,23 @@ public abstract class User implements ChangeCredentials {
         this.role = role;
     }
 
-    // I may need to use these methods for all users
-    @Override
-    public void changeUsername(String newUsername) {
+    public abstract void showOptions();
+
+    public void setUsername(String newUsername) {
         this.username = newUsername;
+        System.out.println("Username successfully changed to: " + newUsername);
     }
 
-    @Override
-    public void changePassword(String newPassword) {
+    public void setPassword(String newPassword) {
         this.password = newPassword;
+        System.out.println("Password successfully changed.");
     }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    // To add content if there are other common methods (login?)
 
     public String getUsername() {
         return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public String getRole() {
         return role;
     }
 }
-

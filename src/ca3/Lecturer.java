@@ -10,8 +10,15 @@ package ca3;
  */
 public class Lecturer extends User {
     public Lecturer(String username, String password) {
-        super(username, password, "Lecturer");
+        super(username, password, "LECTURER");
     }
 
-// I need to add Lecturer options
+    @Override
+    public void showOptions() {
+        System.out.println("LECTURER MENU");
+        System.out.println("1. Generate Lecturer Report");
+        System.out.println("2. Change username");
+        System.out.println("3. Change password");
+        System.out.println("4. Logout");
+    }
 }
