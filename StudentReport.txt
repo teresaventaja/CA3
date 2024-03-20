@@ -1,4 +1,4 @@
-LecturerName - LecturerRole - ModulesTeaching - NumberOfStudents - CanTeach
+student - Programme - Enrolled Modules - Grades - ToRepeat
 Mr. Rupert Shields 3 - Applied programming - Mathematics - Mathematics 61.27 - false
 Chelsie Schmitt 4 - Applied programming - Data visualization - Data visualization 30.03 - true
 Kendrick Schamberger 8 - Data analytics - Database Administration - Database Administration 57.28 - false

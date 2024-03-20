@@ -80,7 +80,7 @@ public class OutputStudent {
         List<StudentReportConstructor> students = StudentReportVariables.fetchStudentInfo(url, user, password);
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
-             PreparedStatement pstmt = conn.prepareStatement(LecturerReportVariables.sql); 
+             PreparedStatement pstmt = conn.prepareStatement(StudentReportVariables.sql); 
              ResultSet rs = pstmt.executeQuery();
              PrintWriter writer = new PrintWriter(studentFilePath)) {
 
