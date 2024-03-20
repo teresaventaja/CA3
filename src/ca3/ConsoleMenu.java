@@ -92,16 +92,15 @@ public class ConsoleMenu {
 
         Optional<User> userOptional = userManager.getUser(username, password);
 
-    if (userOptional.isPresent()) {
+     if (userOptional.isPresent()) {
         User user = userOptional.get();
         if (user.getRole().equals(role)) {
-            if (user instanceof Admin) {
-                // Pass 'this' as the ConsoleMenu reference
+            if (user instanceof Officer) {
+                ((Officer) user).handleOfficerActions(scanner, userManager, this);
+            } else if (user instanceof Admin) {
                 ((Admin) user).handleAdminActions(scanner, userManager, this);
-                // Set showLoginMenu flag here if needed to control login menu display
-                setShowLoginMenu(true);
             }
-            // Handle other roles accordingly
+            setShowLoginMenu(true);
         } else {
             System.out.println("Login failed. Role does not match.");
         }

@@ -120,12 +120,12 @@ Change username and password
   //courseToCSV(url, user, password, courseCSVPath);
 
         UserManager userManager = new UserManager();
-       // ConsoleMenu consoleMenu = new ConsoleMenu(userManager);
+       ConsoleMenu consoleMenu = new ConsoleMenu(userManager);
         
 
 
-      //  consoleMenu.displayMenu();
-                userManager.displayUsers();
+      consoleMenu.displayMenu();
+               // to display stored users // userManager.displayUsers();
     }
    
     

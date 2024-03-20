@@ -23,7 +23,7 @@ public class Admin extends User {
         System.out.println("1. Add user");
         System.out.println("2. Change username");
         System.out.println("3. Change password");
-        System.out.println("4. Logout");
+        System.out.println("4. Back to login (login as admin, officer or lecturer)");
         System.out.println("5. Modify user");
         System.out.println("6. Delete user");
     }
@@ -124,14 +124,14 @@ public class Admin extends User {
     }
          
          
-         public void handleAdminActions(Scanner scanner, UserManager userManager, ConsoleMenu consoleMenu) {
+    public void handleAdminActions(Scanner scanner, UserManager userManager, ConsoleMenu consoleMenu) {
     int choice;
     do {
         showOptions(); // Show admin menu options
         choice = scanner.nextInt();
         scanner.nextLine(); // Consume the newline left-over
         processAdminCommand(choice, scanner, userManager, consoleMenu);
-    } while (choice != 4); // Assuming option 4 is for logout
+    } while (choice != 4); // logout
 }
      
 }

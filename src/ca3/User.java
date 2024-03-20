@@ -23,12 +23,10 @@ public abstract class User {
 
     public void setUsername(String newUsername) {
         this.username = newUsername;
-        System.out.println("Username successfully changed to: " + newUsername);
     }
 
     public void setPassword(String newPassword) {
         this.password = newPassword;
-        System.out.println("Password successfully changed.");
     }
 
     public String getUsername() {
