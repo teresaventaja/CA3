@@ -40,7 +40,7 @@ public class OutputCourse {
             System.out.println(course.getModuleName() + " - " + course.getProgramme() + " - " + course.getNumberOfStudents() + " - " + course.getLecturerName() + " - " + course.getClassroom());
         }
     }
-    
+        
     // Output method to call in Main - Print in the console
     public static void consoleCourse(String url, String user, String password) {
     
@@ -55,6 +55,7 @@ public class OutputCourse {
         consoleRowsCourse(courses); // Print rows
     } catch (SQLException e) {
         System.err.println("SQL error.");
+        System.err.println("SQL err.");
         e.printStackTrace();
     }
     }
