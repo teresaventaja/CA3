@@ -5,12 +5,13 @@
         <group>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/CA3/src/ca3/UserManager.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/CA3/src/ca3/User.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/CA3/src/ca3/Admin.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/CA3/src/ca3/ConsoleMenu.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/CA3/src/ca3/Lecturer.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/CA3/src/ca3/outputCourse.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/CA3/src/ca3/OutputStudent.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/CA3/src/ca3/Officer.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/CA3/src/ca3/OutputLecturer.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/CA3/src/ca3/CA3.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/CA3/src/ca3/OutputCourse.java</file>
         </group>
     </open-files>
 </project-private>
