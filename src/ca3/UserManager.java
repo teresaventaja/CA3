@@ -19,8 +19,10 @@ public class UserManager {
 
     public UserManager() {
         // Add a default admin user
-        users.add(new Admin("admin", "java"));
+       users.add(new Admin("admin", "java", this));
     }
+    
+    
 
     public void addUser(String username, String password, String role) {
         switch (role.toUpperCase()) {
@@ -82,7 +84,6 @@ public class UserManager {
         return users.stream().anyMatch(user -> !(user instanceof Admin));
     }
 
-    
     public void displayUsers() {
     if (users.isEmpty()) {
         System.out.println("No users found.");

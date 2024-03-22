@@ -110,17 +110,17 @@ private void generateCourseReport(Scanner scanner) {
     switch (formatChoice) {
         case 1:
             // Generate report in TXT format
-            outputCourse.coursesToFile(url, user, password, courseFilePath);
+            OutputCourse.coursesToFile(url, user, password, courseFilePath);
             System.out.println("Report generated in TXT format.");
             break;
         case 2:
             // Generate report in CSV format
-            outputCourse.courseToCSV(url, user, password, courseCSVPath);
+            OutputCourse.courseToCSV(url, user, password, courseCSVPath);
             System.out.println("Report generated in CSV format.");
             break;
         case 3:
             // Generate report in the console
-            outputCourse.consoleCourse(url, user, password);
+            OutputCourse.consoleCourse(url, user, password);
             System.out.println("Report displayed in console.");
             break;
         default:
@@ -136,7 +136,6 @@ private void generateLecturerReport(Scanner scanner) {
     System.out.println("3. Console output");
     int formatChoice = scanner.nextInt();
     scanner.nextLine(); // Consume the newline left-over
-
 
     String filePath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\LecturerReport.txt";
     String csvPath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\LecturerReport.csv";

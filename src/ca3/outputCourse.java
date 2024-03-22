@@ -18,7 +18,8 @@ import java.util.List;
  *
  * @author User
  */
-public class outputCourse {
+
+public class OutputCourse {
     
     String url = "jdbc:mysql://localhost:3306/ca3_2";
     String user = "root";

@@ -13,7 +13,7 @@ import static ca3.OutputStudent.consoleStudent;
 import static ca3.OutputStudent.studentToCSV;
 import static ca3.OutputStudent.studentToFile;
 import static ca3.StudentReportVariables.fetchStudentInfo;
-import static ca3.outputCourse.courseToCSV;
+import static ca3.OutputCourse.courseToCSV;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,58 +28,6 @@ import java.util.List;
  */
 public class CA3 {
 
-    /**
-     * Currently, there are three types of reports the college would
-like to see, but their needs may change in the future (must support adding more reports)
-○ A Course Report, that should contain:
-
-Module	Programme	Number of students	Lecturer	Classroom
-				Or “online”
-
-○ A Student Report, that should contain:
-Name and student number	Programme	Enrolled modules	Completed modules and grades	Modules to repeat
-				
-
-○ A Lecturer Report, that should contain:
-Lecturer name	Lecturer role	Modules teaching this semester	Number of students taking modules	Type of classes they can teach (potential modules)
-				
-
-■ The types of classes they can teach (eg Java, Web Dev, Python, Maths etc)
-
-
-● The user should have the option to have the reports in the following formats, with the ability
-to add more in the future:
-○ A txt file
-○ A csv file
-○ Output to the NetBeans Console
-● A menu system in the NetBeans console, with appropriate and helpful messages.
-
-FIRST LOGIN
-Admin login (■ Username: admin
-■ Password: java)
-Add user (username, password, role)
-Change username and password
-
-
-WHEN USER CREATED
-Login as admin
-Add user
-Modify user
-Delete user
-Change username and password
-
-Login as office
-Generate Course Report
-Generate Student Report
-Generate Lecturer Report
-Change username and password
-
-Login as lecturer
-Generate Lecturer Report
-Change username and password
-
-     */
-    
     /**
      * @param args the command line arguments
      */
@@ -97,36 +45,12 @@ Change username and password
    
     // Test if it works
     
-    /**
-    List<CourseReportConstructor> modules = fetchModuleInfo(url, user, password);
-    for (CourseReportConstructor module : modules) {
-        System.out.println(module.getModuleName() + " - " + module.getProgramme() + " - " + module.getNumberOfStudents() + " - " + module.getLecturerName() + " - " + module.getClassroom());
-    }
-     
-    List<StudentReportConstructor> students = fetchStudentInfo(url, user, password);
-    for (StudentReportConstructor student : students) {
-        System.out.println(student.getStudent() + " - " + student.getProgramme() + " - " + student.getEnrolledModules() + " - " + student.getCompletedModulesAndGrades() + " - " + student.getToRepeatModules());
-    }
-    */ 
-    
-    // Console output for lecturer report
-    
-   // consoleStudent(url, user, password);
-    
-    // File output for lecturer report
- // studentToFile(url, user, password, studentFilePath);
-    
-    // CSV output for lecturer report
-  //courseToCSV(url, user, password, courseCSVPath);
-
-        UserManager userManager = new UserManager();
-       ConsoleMenu consoleMenu = new ConsoleMenu(userManager);
+    UserManager userManager = new UserManager();
+    ConsoleMenu consoleMenu = new ConsoleMenu(userManager);
         
 
+     consoleMenu.displayMenu();
 
-      consoleMenu.displayMenu();
-               // to display stored users // userManager.displayUsers();
-    }
-   
+    } 
     
 }
