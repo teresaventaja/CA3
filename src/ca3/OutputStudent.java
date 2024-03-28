@@ -59,7 +59,7 @@ public class OutputStudent {
         consoleHeadings(metaData); // Print column headings
         consoleRowsStudent(students); // Print rows
     } catch (SQLException e) {
-        System.err.println("SQL error.");
+        System.err.println("Failed to connect to the database or execute the query.");
         e.printStackTrace();
     }
     }
