@@ -93,7 +93,7 @@ public class OutputCourse {
             System.err.println("SQL error: " + e.getMessage());
             e.printStackTrace();
         } catch (FileNotFoundException e) {
-            System.err.println("File not found error: " + e.getMessage());
+            System.err.println("File not found error : " + e.getMessage());
             e.printStackTrace();
         }
     }
