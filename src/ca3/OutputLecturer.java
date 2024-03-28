@@ -29,18 +29,19 @@ public class OutputLecturer {
     // Method to output headings in the console
     
     public static void consoleHeadings(ResultSetMetaData metaData) throws SQLException {
-        int columnCount = metaData.getColumnCount();
-        for (int i = 1; i <= columnCount; i++) {
-            System.out.print(metaData.getColumnLabel(i) + (i == columnCount ? "" : " - "));
-        }
-        System.out.println(); // Move to the next line to prevent errors
+        System.out.format("%-30s%-30s%-30s%-30s%-30s\n", "Lecturer", "Role", "ModulesTeaching", "NumOfStudents", "ModulesCanTeach");
     }
 
     // Method to output rows in the console
     
     public static void consoleRowsLecturer(List<LecturerReportConstructor> lecturers) {
         for (LecturerReportConstructor lecturer : lecturers) {
-            System.out.println(lecturer.getLecturer() + " - " + lecturer.getRole() + " - " + lecturer.getModulesTeaching() + " - " + lecturer.getNumberOfStudents() + " - " + lecturer.getModulesCanTeach());
+                   System.out.format("%-30s%-30s%-30s%-30s%-30s\n",
+                lecturer.getLecturer(),
+                lecturer.getRole(),
+                lecturer.getModulesTeaching(),
+                lecturer.getNumberOfStudents(),
+                lecturer.getModulesCanTeach());
         }
     }
     
@@ -66,18 +67,19 @@ public class OutputLecturer {
     // Print headings in a file
     
     public static void printHeadingsToFile(ResultSetMetaData metaData, PrintWriter writer) throws SQLException {
-        int columnCount = metaData.getColumnCount();
-        for (int i = 1; i <= columnCount; i++) {
-            writer.print(metaData.getColumnLabel(i) + (i == columnCount ? "" : " - "));
-        }
-        writer.println(); // Move to the next line to prevent errorsn
+        writer.format("%-30s%-30s%-30s%-30s%-30s\n", "Lecturer", "Role", "ModulesTeaching", "NumOfStudents", "ModulesCanTeach");
     }
 
     // Print rows in a file
     
     public static void printRowsToFile(List<LecturerReportConstructor> lecturers, PrintWriter writer) {
         for (LecturerReportConstructor lecturer : lecturers) {
-            writer.println(lecturer.getLecturer() + " - " + lecturer.getRole() + " - " + lecturer.getModulesTeaching() + " - " + lecturer.getNumberOfStudents() + " - " + lecturer.getModulesCanTeach());
+        writer.format("%-30s%-30s%-30s%-30s%-30s\n",
+                lecturer.getLecturer(),
+                lecturer.getRole(),
+                lecturer.getModulesTeaching(),
+                lecturer.getNumberOfStudents(),
+                lecturer.getModulesCanTeach());
         }
     }
 

@@ -4,6 +4,7 @@
  */
 package ca3;
 
+import java.util.InputMismatchException;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -41,53 +42,54 @@ public class ConsoleMenu {
     // Prior to login - shows the options of login as different users
     
     public void showLoginMenu() {
+    while (!exitApplication) {
         System.out.println("LOGIN MENU");
-        if (userManager.hasNonAdminUsers()) {
-            System.out.println("1. Login as Admin");
-            System.out.println("2. Login as Officer");
-            System.out.println("3. Login as Lecturer");
-            System.out.println("4. Exit Application"); 
-        } else {
-            System.out.println("1. Login as Admin");
-            System.out.println("2. Exit Application"); 
+        
+        // Always show login as Admin
+        
+        System.out.println("1. Login as Admin");
+        
+        int optionNumber = 2; // Start with 2 because 1 is for Admin
+        
+        // Dynamically add login options based on roles
+        
+        if (userManager.hasRole("OFFICER")) {
+            System.out.println(optionNumber++ + ". Login as Officer");
         }
-        int choice = scanner.nextInt();
-        scanner.nextLine(); // move to the next line
+        
+        // Dynamically add login options based on roles
+        
+        if (userManager.hasRole("LECTURER")) {
+            System.out.println(optionNumber++ + ". Login as Lecturer");
+        }
+           
+        // Last option is always to exit, dynamically adjust its position
+        
+        System.out.println(optionNumber + ". Exit Application");
 
-        switch (choice) {
-            case 1:
-                // Perform admin login
+        try {
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Prevent errors
+
+            // Handle user choice
+            
+            if (choice == 1) {
                 performLogin("ADMIN");
-                break;
-            case 2:
-                if (userManager.hasNonAdminUsers()) { // Option 2 displayed only if users other than Admin are present
-                // Perform officer login
-                    performLogin("OFFICER");
-                } else {
-                    exitApplication(); // Option 2 if only Admin is present (no other users) - Exit application
-                }
-                break;
-            case 3:
-                // Perform lecturer login
-                if (userManager.hasNonAdminUsers()) { // Option 3 displayed only if users other than Admin are present
-                    performLogin("LECTURER");
-                } else {
-                    System.out.println("Invalid choice."); // Option 3 if only Admin is present (no other users) - invalid cause there are only 2
-                }
-                break;
-            case 4:
-                // Exit application
-                if (userManager.hasNonAdminUsers()) { // Option 4 displayed only if users other than Admin are present
-                    exitApplication();
-                } else {
-                    System.out.println("Invalid choice."); //  Option 4 if only Admin is present (no other users) - invalid cause there are only 2
-                }
-                break;
-            default:
-                System.out.println("Invalid choice."); // Incorrect selection
-                break;
+            } else if (choice == 2 && userManager.hasRole("OFFICER")) {
+                performLogin("OFFICER");
+            } else if (userManager.hasRole("LECTURER")) {
+                performLogin("LECTURER");
+            } else if (choice == optionNumber) {
+                exitApplication();
+            } else {
+                System.out.println("Invalid choice. Please select a valid option.");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a number.");
+            scanner.next(); // Prevent errors
         }
     }
+}
 
     // To use to display the login menu while option "exit application" is not set as true
     

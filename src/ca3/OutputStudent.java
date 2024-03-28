@@ -29,18 +29,19 @@ public class OutputStudent {
     // Method to output headings in the console
     
     public static void consoleHeadings(ResultSetMetaData metaData) throws SQLException {
-        int columnCount = metaData.getColumnCount();
-        for (int i = 1; i <= columnCount; i++) {
-            System.out.print(metaData.getColumnLabel(i) + (i == columnCount ? "" : " - "));
-        }
-        System.out.println(); // Move to the next line to avoid errors
+        System.out.format("%-30s%-30s%-30s%-30s%-30s\n", "Student", "Programme", "EnrolledModules", "CompletedModulesAndGrades", "ToRepeatModules");
     }
 
     // Method to output rows in the console
     
     public static void consoleRowsStudent(List<StudentReportConstructor> students) {
         for (StudentReportConstructor student : students) {
-            System.out.println(student.getStudent() + " - " +student.getProgramme() + " - " + student.getEnrolledModules() + " - " + student.getCompletedModulesAndGrades() + " - " + student.getToRepeatModules());
+            System.out.format("%-30s%-30s%-30s%-30s%-30s\n",
+                student.getStudent(),
+                student.getProgramme(),
+                student.getEnrolledModules(),
+                student.getCompletedModulesAndGrades(),
+                student.getToRepeatModules());
         }
     }
     
@@ -66,18 +67,19 @@ public class OutputStudent {
     // Print headings in a file
     
     public static void printHeadingsToFile(ResultSetMetaData metaData, PrintWriter writer) throws SQLException {
-        int columnCount = metaData.getColumnCount();
-        for (int i = 1; i <= columnCount; i++) {
-            writer.print(metaData.getColumnLabel(i) + (i == columnCount ? "" : " - "));
-        }
-        writer.println(); // Move to the next line to avoid errors
-    }
+        writer.format("%-30s%-30s%-30s%-30s%-30s\n", "Student", "Programme", "EnrolledModules", "CompletedModulesAndGrades", "ToRepeatModules");
+}
 
     // Print rows in a file
     
     public static void printRowsToFile(List<StudentReportConstructor> students, PrintWriter writer) {
         for (StudentReportConstructor student : students) {
-            writer.println(student.getStudent() + " - " + student.getProgramme() + " - " + student.getEnrolledModules() + " - " + student.getCompletedModulesAndGrades() + " - " + student.getToRepeatModules());
+            writer.format("%-30s%-30s%-30s%-30s%-30s\n",
+                student.getStudent(),
+                student.getProgramme(),
+                student.getEnrolledModules(),
+                student.getCompletedModulesAndGrades(),
+                student.getToRepeatModules());
         }
     }
 

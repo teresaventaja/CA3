@@ -110,72 +110,49 @@ public class Admin extends User {
     
     // Logic to modify users based on username
     
-    private void modifyUser(Scanner scanner, UserManager userManager) {
-        
-    // Check if there are any non-admin users to exit this option
-    
-    if (!userManager.hasNonAdminUsers()) {
-        System.out.println("No modifiable users found. Only the admin exists.");
-        return; 
-    }
-    
-    System.out.println("Enter the username of the user you want to modify:");
-    String oldUsername = scanner.nextLine();
+ private void modifyUser(Scanner scanner, UserManager userManager) {
+        System.out.println("Enter the username of the user you want to modify:");
+        String username = scanner.nextLine();
 
-    
-    // Check if the username to modify is not "admin" (admin must be there by default)
-    
-    if ("admin".equalsIgnoreCase(oldUsername)) {
-        System.out.println("Modifying the admin user is not allowed through this option.");
-        return;
-    }
-    
-    System.out.println("Enter the new username for the user (press Enter to skip):");
-    String newUsername = scanner.nextLine();
+        if (!userManager.isUserModifiable(username)) {
+            System.out.println("The user cannot be modified.");
+            return;
+        }
 
-    System.out.println("Enter the new password for the user (press Enter to skip):");
-    String newPassword = scanner.nextLine();
+        System.out.println("Enter the new username (press Enter to skip):");
+        String newUsername = scanner.nextLine();
 
-    boolean isUpdated = false;
+        System.out.println("Enter the new password (press Enter to skip):");
+        String newPassword = scanner.nextLine();
 
-    // Update the username if a new username is provided (handle when the user presses "Enter")
-    
-    if (!newUsername.isEmpty()) {
-        boolean usernameUpdated = userManager.modifyUsername(oldUsername, newUsername);
-        if (usernameUpdated) {
+        if (!newUsername.isEmpty() && userManager.modifyUsername(username, newUsername)) {
             System.out.println("Username updated successfully.");
-            isUpdated = true;
-            oldUsername = newUsername;
+        } else if (newUsername.isEmpty()) {
+            System.out.println("Username update skipped.");
         } else {
             System.out.println("Failed to update username.");
         }
-    }
 
-    // Update the username if a new password is provided (handle when the user presses "Enter")
-    
-    if (!newPassword.isEmpty()) {
-        boolean passwordUpdated = userManager.modifyPassword(newUsername.isEmpty() ? oldUsername : newUsername, newPassword);
-        if (passwordUpdated) {
+        if (!newPassword.isEmpty() && userManager.modifyPassword(newUsername.isEmpty() ? username : newUsername, newPassword)) {
             System.out.println("Password updated successfully.");
-            isUpdated = true;
+        } else if (newPassword.isEmpty()) {
+            System.out.println("Password update skipped.");
         } else {
             System.out.println("Failed to update password.");
         }
     }
-
-    // If no changes are made (user presses "Enter" instead of providing username or password)
-    
-    if (!isUpdated) {
-        System.out.println("No updates made. Please provide at least a new username or a new password.");
-    }
-}
     
     // Logic to delete user based on username
     
     private void deleteUser(Scanner scanner, UserManager userManager) {
-    System.out.println("Enter the username of the user you want to delete:");
-    String username = scanner.nextLine();
-    userManager.deleteUser(username);
-    }      
-     
+        System.out.println("Enter the username of the user you want to delete:");
+        String username = scanner.nextLine();
+
+        if (!userManager.isUserModifiable(username)) {
+            System.out.println("The user cannot be deleted.");
+            return;
+        }
+
+        userManager.deleteUser(username);
+    }     
 }

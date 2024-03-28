@@ -15,7 +15,7 @@ import java.util.Optional;
  */
 
 public class UserManager {
-    
+     
     // Arraylist storing users
     
     private List<User> users = new ArrayList<>();
@@ -46,18 +46,7 @@ public class UserManager {
 
     // To be used to delete users (admin option)
     
-    public void deleteUser(String username) {
-        Iterator<User> iterator = users.iterator();
-        while (iterator.hasNext()) {
-            User user = iterator.next();
-            if (user.getUsername().equals(username)) {
-                iterator.remove();
-                System.out.println("User " + username + " deleted.");
-                return;
-            }
-        }
-        System.out.println("User not found.");
-    }
+
 
     // To be used to modify username (admin option)
     
@@ -113,4 +102,34 @@ public class UserManager {
         System.out.println("Username: " + user.getUsername() + ", Role: " + user.getRole());
     }
 }
+    
+    // Check if username exists
+    
+    public boolean doesUserExist(String username) {
+        return users.stream().anyMatch(user -> user.getUsername().equals(username));
+    }
+
+    // Check if the username is modifiable (i.e., not "admin")
+    
+    public boolean isUserModifiable(String username) {
+        return doesUserExist(username) && !username.equalsIgnoreCase("admin");
+    }
+
+    // Modify deleteUser to use doesUserExist for initial check
+    
+    public void deleteUser(String username) {
+        if (!doesUserExist(username)) {
+            System.out.println("User not found.");
+            return;
+        }
+        
+        users.removeIf(user -> user.getUsername().equals(username));
+        System.out.println("User " + username + " deleted.");
+    }  
+    
+    public boolean hasRole(String role) {
+    return users.stream().anyMatch(user -> user.getRole().equalsIgnoreCase(role));
+    }
+
+    
 }

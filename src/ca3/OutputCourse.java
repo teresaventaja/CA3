@@ -28,19 +28,20 @@ public class OutputCourse {
     // Method to output headings in the console
     
     public static void consoleHeadings(ResultSetMetaData metaData) throws SQLException {
-        int columnCount = metaData.getColumnCount();
-        for (int i = 1; i <= columnCount; i++) {
-            System.out.print(metaData.getColumnLabel(i) + (i == columnCount ? "" : " - "));
-        }
-        System.out.println(); // Move to the next line to prevent errors
+        System.out.format("%-30s%-30s%-30s%-30s%-30s\n", "ModuleName", "Programme", "NumOfStudents", "LecturerName", "Classroom");
     }
 
     // Method to output rows in the console
     
     public static void consoleRowsCourse(List<CourseReportConstructor> courses) {
         for (CourseReportConstructor course : courses) {
-            System.out.println(course.getModuleName() + " - " + course.getProgramme() + " - " + course.getNumberOfStudents() + " - " + course.getLecturerName() + " - " + course.getClassroom());
-        }
+        System.out.format("%-30s%-30s%-30s%-30s%-30s\n",
+                course.getModuleName(),
+                course.getProgramme(),
+                course.getNumberOfStudents(),
+                course.getLecturerName(),
+                course.getClassroom());
+    } 
     }
         
     // Output method to call in Main - Print in the console
@@ -66,18 +67,26 @@ public class OutputCourse {
     
     public static void printHeadingsToFile(ResultSetMetaData metaData, PrintWriter writer) throws SQLException {
         int columnCount = metaData.getColumnCount();
-        for (int i = 1; i <= columnCount; i++) {
-            writer.print(metaData.getColumnLabel(i) + (i == columnCount ? "" : " - "));
-        }
-        writer.println(); // Move to the next line to prevent errors
+       // for (int i = 1; i <= columnCount; i++) {
+        //    writer.print(metaData.getColumnLabel(i) + (i == columnCount ? "" : " - "));
+       // }
+        writer.format("%-20s%-20s%-20s%-20s%-20s\n", "ModuleName", "Programme", "NumOfStudents", "LecturerName", "Classroom");
     }
 
     // Print rows in a file
     
     public static void printRowsToFile(List<CourseReportConstructor> courses, PrintWriter writer) {
-        for (CourseReportConstructor course : courses) {
-            System.out.println(course.getModuleName() + " - " + course.getProgramme() + " - " + course.getNumberOfStudents() + " - " + course.getLecturerName() + " - " + course.getClassroom());
-        }
+         for (CourseReportConstructor course : courses) {
+        writer.format("%-20s%-20s%-20s%-20s%-20s\n",
+                course.getModuleName(),
+                course.getProgramme(),
+                course.getNumberOfStudents(),
+                course.getLecturerName(),
+                course.getClassroom());
+    }
+        //for (CourseReportConstructor course : courses) {
+         //   System.out.println(course.getModuleName() + " - " + course.getProgramme() + " - " + course.getNumberOfStudents() + " - " + course.getLecturerName() + " - " + course.getClassroom());
+       // }
     }
 
     // Output method to call in Main - report in a .txt file
