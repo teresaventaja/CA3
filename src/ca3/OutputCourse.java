@@ -55,7 +55,6 @@ public class OutputCourse {
         consoleRowsCourse(courses); // Print rows
     } catch (SQLException e) {
         System.err.println("SQL error.");
-        System.err.println("SQL err.");
         e.printStackTrace();
     }
     }
