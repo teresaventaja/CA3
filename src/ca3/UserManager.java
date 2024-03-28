@@ -25,10 +25,34 @@ public class UserManager {
     public UserManager() {
        users.add(new Admin("admin", "java", this));
     }
+        
+    private boolean isPasswordWeak(String password) { // Method to create a warning when weak passwords are selected
+        boolean hasLetter = false;
+        boolean hasDigit = false;
+        boolean hasSpecial = false;
+
+        for (int i = 0; i < password.length(); i++) {
+            char ch = password.charAt(i);
+            if (Character.isLetter(ch)) {
+                hasLetter = true;
+            } else if (Character.isDigit(ch)) {
+                hasDigit = true;
+            } else {
+                hasSpecial = true;
+            }
+        }
+
+        return password.length() < 8 || !(hasLetter && hasDigit && hasSpecial);
+    }
     
     // To use to add users
 
     public void addUser(String username, String password, String role) {
+        
+    if (isPasswordWeak(password)) {
+        System.out.println("Warning: The chosen password is weak. If you want an increased security, consider using more than 8 character, a mix of letters, digits, and special characters.");
+    }
+        
         switch (role.toUpperCase()) {
             case "ADMIN":
                 System.out.println("Admin creation is not allowed.");
@@ -131,5 +155,5 @@ public class UserManager {
     return users.stream().anyMatch(user -> user.getRole().equalsIgnoreCase(role));
     }
 
-    
 }
+    
