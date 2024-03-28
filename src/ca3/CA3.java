@@ -30,12 +30,23 @@ public class CA3 {
 
     /**
      * @param args the command line arguments
+     * 
+     * 
+     * Git repo: https://github.com/teresaventaja/CA3
+     * 
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        
+    // Connection to database
+    
     String url = "jdbc:mysql://localhost:3306/ca3_2";
     String user = "root";
     String password = "root24";
+    
+    // Variables to reference file paths
+    
     String filePath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\LecturerReport.txt";
     String csvPath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\LecturerReport.csv";
     String studentFilePath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\StudentReport.txt";
@@ -43,13 +54,14 @@ public class CA3 {
     String courseFilePath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\CourseReport.txt";
     String courseCSVPath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\CourseReport.csv";
    
-    // Test if it works
+    // Loading UserManager and ConsoleMenu
     
     UserManager userManager = new UserManager();
     ConsoleMenu consoleMenu = new ConsoleMenu(userManager);
         
-
-     consoleMenu.displayMenu();
+    // Calling the consoleMenu to run the program
+    
+    consoleMenu.displayMenu();
 
     } 
     

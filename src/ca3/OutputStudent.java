@@ -20,20 +20,24 @@ import java.util.List;
  */
 public class OutputStudent {
     
+    // Connect to the database
+    
     String url = "jdbc:mysql://localhost:3306/ca3_2";
     String user = "root";
     String password = "root24";
     
     // Method to output headings in the console
+    
     public static void consoleHeadings(ResultSetMetaData metaData) throws SQLException {
         int columnCount = metaData.getColumnCount();
         for (int i = 1; i <= columnCount; i++) {
             System.out.print(metaData.getColumnLabel(i) + (i == columnCount ? "" : " - "));
         }
-        System.out.println(); // Move to the next line after completion
+        System.out.println(); // Move to the next line to avoid errors
     }
 
     // Method to output rows in the console
+    
     public static void consoleRowsStudent(List<StudentReportConstructor> students) {
         for (StudentReportConstructor student : students) {
             System.out.println(student.getStudent() + " - " +student.getProgramme() + " - " + student.getEnrolledModules() + " - " + student.getCompletedModulesAndGrades() + " - " + student.getToRepeatModules());
@@ -41,6 +45,7 @@ public class OutputStudent {
     }
     
     // Output method to call in Main - Print in the console
+    
     public static void consoleStudent(String url, String user, String password) {
     
     List<StudentReportConstructor> students = StudentReportVariables.fetchStudentInfo(url, user, password);
@@ -59,15 +64,17 @@ public class OutputStudent {
     }
     
     // Print headings in a file
+    
     public static void printHeadingsToFile(ResultSetMetaData metaData, PrintWriter writer) throws SQLException {
         int columnCount = metaData.getColumnCount();
         for (int i = 1; i <= columnCount; i++) {
             writer.print(metaData.getColumnLabel(i) + (i == columnCount ? "" : " - "));
         }
-        writer.println(); // Move to the next line after completion
+        writer.println(); // Move to the next line to avoid errors
     }
 
     // Print rows in a file
+    
     public static void printRowsToFile(List<StudentReportConstructor> students, PrintWriter writer) {
         for (StudentReportConstructor student : students) {
             writer.println(student.getStudent() + " - " + student.getProgramme() + " - " + student.getEnrolledModules() + " - " + student.getCompletedModulesAndGrades() + " - " + student.getToRepeatModules());
@@ -75,6 +82,7 @@ public class OutputStudent {
     }
 
     // Output method to call in Main - report in a .txt file
+    
     public static void studentToFile(String url, String user, String password, String studentFilePath) {
 
         List<StudentReportConstructor> students = StudentReportVariables.fetchStudentInfo(url, user, password);
@@ -98,15 +106,17 @@ public class OutputStudent {
     }
     
     // Headings to CSV
+    
     public static void printHeadingsToCSV(ResultSetMetaData metaData, PrintWriter writer) throws SQLException {
         int columnCount = metaData.getColumnCount();
         for (int i = 1; i <= columnCount; i++) {
             writer.print("\"" + metaData.getColumnLabel(i) + "\"" + (i == columnCount ? "" : ","));
         }
-        writer.println(); // Move to the next line after completion
+        writer.println(); // Move to the next line to avoid errors
     }
 
     // Rows to CSV
+    
     public static void printRowsToCSV(List<StudentReportConstructor> students, PrintWriter writer) {
         for (StudentReportConstructor student : students) {
             writer.println("\"" + student.getStudent() + "\",\"" + student.getProgramme() + "\",\"" + student.getEnrolledModules() + "\",\"" + student.getCompletedModulesAndGrades() + "\",\"" + student.getToRepeatModules() + "\"");
@@ -114,6 +124,7 @@ public class OutputStudent {
     }
 
     // Output method to call in Main - report in CSV format
+    
     public static void studentToCSV(String url, String user, String password, String csvPath) {
         List<StudentReportConstructor> students = StudentReportVariables.fetchStudentInfo(url, user, password);
 

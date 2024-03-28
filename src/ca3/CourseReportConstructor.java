@@ -15,6 +15,9 @@ public class CourseReportConstructor {
     private String lecturerName;
     private String classroom;
     
+    
+   // To be used to extract the variables
+    
     public CourseReportConstructor(String moduleName, String programme, String numberOfStudents, String lecturerName, String classroom) {
         this.moduleName = moduleName;
         this.programme = programme;
@@ -23,6 +26,9 @@ public class CourseReportConstructor {
         this.classroom = classroom;
     }
 
+    
+    // Getters and setters
+    
     public String getModuleName() {
         return moduleName;
     }

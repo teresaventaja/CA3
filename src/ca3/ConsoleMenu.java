@@ -25,7 +25,7 @@ public class ConsoleMenu {
         this.scanner = new Scanner(System.in);
     }
     
-    // To use to show user menu under certain conditions (user role is validated below)
+    // To use to show user menu under certain conditions (used in lecturer class)
     
     public void setShowLoginMenu(boolean showLoginMenu) {
         this.showLoginMenu = showLoginMenu;

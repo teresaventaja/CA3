@@ -15,14 +15,18 @@ import java.util.Optional;
  */
 
 public class UserManager {
+    
+    // Arraylist storing users
+    
     private List<User> users = new ArrayList<>();
 
+    // Adding our admin to the list
+    
     public UserManager() {
-        // Add a default admin user
        users.add(new Admin("admin", "java", this));
     }
     
-    
+    // To use to add users
 
     public void addUser(String username, String password, String role) {
         switch (role.toUpperCase()) {
@@ -40,6 +44,7 @@ public class UserManager {
         }
     }
 
+    // To be used to delete users (admin option)
     
     public void deleteUser(String username) {
         Iterator<User> iterator = users.iterator();
@@ -54,7 +59,9 @@ public class UserManager {
         System.out.println("User not found.");
     }
 
- public boolean modifyUsername(String oldUsername, String newUsername) {
+    // To be used to modify username (admin option)
+    
+    public boolean modifyUsername(String oldUsername, String newUsername) {
         for (User user : users) {
             if (user.getUsername().equals(oldUsername)) {
                 user.setUsername(newUsername);
@@ -64,6 +71,8 @@ public class UserManager {
         return false;
     }
 
+    // To be used to modify password (admin option)
+    
     public boolean modifyPassword(String username, String newPassword) {
         for (User user : users) {
             if (user.getUsername().equals(username)) {
@@ -80,16 +89,25 @@ public class UserManager {
                 .findFirst();
     }
 
+    // To isolate instances in which menu options must hide (for example, user logins other than admin)
+    
     public boolean hasNonAdminUsers() {
         return users.stream().anyMatch(user -> !(user instanceof Admin));
     }
 
+    // Handling invalid option to display users when none was created
+    
     public void displayUsers() {
+        
+    // Handling invalid option to display users when none was created
+        
     if (users.isEmpty()) {
         System.out.println("No users found.");
         return;
     }
-
+    
+    // Show existing users
+    
     System.out.println("Existing users:");
     for (User user : users) {
         System.out.println("Username: " + user.getUsername() + ", Role: " + user.getRole());

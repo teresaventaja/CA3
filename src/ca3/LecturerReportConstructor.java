@@ -15,6 +15,8 @@ public class LecturerReportConstructor {
     private String numberOfStudents;
     private String modulesCanTeach;
     
+    // To be used to extract variables from database data
+    
     public LecturerReportConstructor(String lecturer, String role, String modulesTeaching, String numberOfStudents, String modulesCanTeach) {
         this.lecturer = lecturer;
         this.role = role;
@@ -22,7 +24,9 @@ public class LecturerReportConstructor {
         this.numberOfStudents = numberOfStudents;
         this.modulesCanTeach = modulesCanTeach;
     }
-
+    
+    // Getters and setters
+    
     public String getLecturer() {
         return lecturer;
     }

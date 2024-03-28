@@ -15,6 +15,8 @@ public class StudentReportConstructor {
     private String completedModulesAndGrades;
     private String toRepeatModule;
     
+    // To be used to extract variables from database data
+    
     public StudentReportConstructor(String student, String programme, String enrolledModules, String completedModulesAndGrades, String toRepeatModule) {
         this.student = student;
         this.programme = programme;
@@ -23,6 +25,8 @@ public class StudentReportConstructor {
         this.toRepeatModule = toRepeatModule;
     }
 
+    // Setters and getters
+    
     public String getStudent() {
         return student;
     }

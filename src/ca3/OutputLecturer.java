@@ -20,20 +20,24 @@ import java.util.List;
  */
 public class OutputLecturer {
     
+    // Connection to database
+    
     String url = "jdbc:mysql://localhost:3306/ca3_2";
     String user = "root";
     String password = "root24";
     
     // Method to output headings in the console
+    
     public static void consoleHeadings(ResultSetMetaData metaData) throws SQLException {
         int columnCount = metaData.getColumnCount();
         for (int i = 1; i <= columnCount; i++) {
             System.out.print(metaData.getColumnLabel(i) + (i == columnCount ? "" : " - "));
         }
-        System.out.println(); // Move to the next line after completion
+        System.out.println(); // Move to the next line to prevent errors
     }
 
     // Method to output rows in the console
+    
     public static void consoleRowsLecturer(List<LecturerReportConstructor> lecturers) {
         for (LecturerReportConstructor lecturer : lecturers) {
             System.out.println(lecturer.getLecturer() + " - " + lecturer.getRole() + " - " + lecturer.getModulesTeaching() + " - " + lecturer.getNumberOfStudents() + " - " + lecturer.getModulesCanTeach());
@@ -41,6 +45,7 @@ public class OutputLecturer {
     }
     
     // Output method to call in Main - Print in the console
+    
     public static void consoleOutput(String url, String user, String password) {
     
     List<LecturerReportConstructor> lecturers = LecturerReportVariables.fetchLecturerInfo(url, user, password);
@@ -59,15 +64,17 @@ public class OutputLecturer {
     }
     
     // Print headings in a file
+    
     public static void printHeadingsToFile(ResultSetMetaData metaData, PrintWriter writer) throws SQLException {
         int columnCount = metaData.getColumnCount();
         for (int i = 1; i <= columnCount; i++) {
             writer.print(metaData.getColumnLabel(i) + (i == columnCount ? "" : " - "));
         }
-        writer.println(); // Move to the next line after completion
+        writer.println(); // Move to the next line to prevent errorsn
     }
 
     // Print rows in a file
+    
     public static void printRowsToFile(List<LecturerReportConstructor> lecturers, PrintWriter writer) {
         for (LecturerReportConstructor lecturer : lecturers) {
             writer.println(lecturer.getLecturer() + " - " + lecturer.getRole() + " - " + lecturer.getModulesTeaching() + " - " + lecturer.getNumberOfStudents() + " - " + lecturer.getModulesCanTeach());
@@ -75,6 +82,7 @@ public class OutputLecturer {
     }
 
     // Output method to call in Main - report in a .txt file
+    
     public static void outputToFile(String url, String user, String password, String filePath) {
 
         List<LecturerReportConstructor> lecturers = LecturerReportVariables.fetchLecturerInfo(url, user, password);
@@ -98,15 +106,17 @@ public class OutputLecturer {
     }
     
     // Headings to CSV
+    
     public static void printHeadingsToCSV(ResultSetMetaData metaData, PrintWriter writer) throws SQLException {
         int columnCount = metaData.getColumnCount();
         for (int i = 1; i <= columnCount; i++) {
             writer.print("\"" + metaData.getColumnLabel(i) + "\"" + (i == columnCount ? "" : ","));
         }
-        writer.println(); // Move to the next line after completion
+        writer.println(); // Move to the next line to prevent errors
     }
 
     // Rows to CSV
+    
     public static void printRowsToCSV(List<LecturerReportConstructor> lecturers, PrintWriter writer) {
         for (LecturerReportConstructor lecturer : lecturers) {
             writer.println("\"" + lecturer.getLecturer() + "\",\"" + lecturer.getRole() + "\",\"" + lecturer.getModulesTeaching() + "\",\"" + lecturer.getNumberOfStudents() + "\",\"" + lecturer.getModulesCanTeach() + "\"");
@@ -114,6 +124,7 @@ public class OutputLecturer {
     }
 
     // Output method to call in Main - report in CSV format
+    
     public static void outputToCSV(String url, String user, String password, String csvPath) {
         List<LecturerReportConstructor> lecturers = LecturerReportVariables.fetchLecturerInfo(url, user, password);
 

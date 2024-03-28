@@ -13,14 +13,20 @@ public abstract class User {
     protected String password;
     protected String role;
 
+    // Constructor for users
+    
     public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
+    // Abstract method to reuse in different type of users
+    
     public abstract void showOptions();
 
+    // Getters and setters
+    
     public void setUsername(String newUsername) {
         this.username = newUsername;
     }

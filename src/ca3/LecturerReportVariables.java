@@ -18,9 +18,9 @@ import java.util.List;
  */
 public class LecturerReportVariables {
     
-public static final String sql = "SELECT l.LecturerName, l.LecturerRole, GROUP_CONCAT(DISTINCT CASE WHEN lm.IsTeaching = 0 THEN m.ModuleName END SEPARATOR '; ') AS ModulesTeaching, SUM(sm.Enrolled = 0) AS NumberOfStudents, GROUP_CONCAT(DISTINCT CASE WHEN lm.CanTeach = 0 THEN m.ModuleName END SEPARATOR '; ') AS CanTeach FROM lecturer l LEFT JOIN lecturermodule lm ON l.LecturerNumber = lm.LecturerNumber LEFT JOIN module m ON lm.ModuleID = m.ModuleID LEFT JOIN studentmodule sm ON m.ModuleID = sm.ModuleID GROUP BY l.LecturerName, l.LecturerRole;";
-        
     // Declared as final so that it can only be assigned to the right query
+    public static final String sql = "SELECT l.LecturerName, l.LecturerRole, GROUP_CONCAT(DISTINCT CASE WHEN lm.IsTeaching = 0 THEN m.ModuleName END SEPARATOR '; ') AS ModulesTeaching, SUM(sm.Enrolled = 0) AS NumberOfStudents, GROUP_CONCAT(DISTINCT CASE WHEN lm.CanTeach = 0 THEN m.ModuleName END SEPARATOR '; ') AS CanTeach FROM lecturer l LEFT JOIN lecturermodule lm ON l.LecturerNumber = lm.LecturerNumber LEFT JOIN module m ON lm.ModuleID = m.ModuleID LEFT JOIN studentmodule sm ON m.ModuleID = sm.ModuleID GROUP BY l.LecturerName, l.LecturerRole;";
+        
     public static List<LecturerReportConstructor> fetchLecturerInfo(String url, String user, String password) {
     
         List<LecturerReportConstructor> lecturers = new ArrayList<>();
@@ -30,6 +30,9 @@ public static final String sql = "SELECT l.LecturerName, l.LecturerRole, GROUP_C
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
+                
+                // Assign values to variables
+                
                 String lecturer = rs.getString("LecturerName");
                 String role = rs.getString("LecturerRole");
                 String modulesTeaching = rs.getString("ModulesTeaching");
@@ -43,7 +46,7 @@ public static final String sql = "SELECT l.LecturerName, l.LecturerRole, GROUP_C
                 e.printStackTrace();
             }  
 
-        return lecturers;
+        return lecturers; // Isolate our lecturers
         }
 
 }

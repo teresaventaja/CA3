@@ -21,6 +21,7 @@ import java.util.List;
 public class CourseReportVariables {
     
     // Declared as final so that it can only be assigned to the right query
+    
     public static final String sql = "SELECT m.ModuleName, m.Programme, COUNT(DISTINCT sm.StudentNumber) AS NumberOfStudents, l.LecturerName, m.Classroom FROM module m LEFT JOIN studentmodule sm ON m.ModuleID = sm.ModuleID LEFT JOIN lecturermodule lm ON m.ModuleID = lm.ModuleID INNER JOIN lecturer l ON lm.LecturerNumber = l.LecturerNumber GROUP BY m.ModuleName, m.Programme, l.LecturerName, m.Classroom HAVING l.LecturerName IS NOT NULL;";
 
     public static List<CourseReportConstructor> fetchModuleInfo(String url, String user, String password) {
@@ -32,6 +33,9 @@ public class CourseReportVariables {
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
+                
+                // Assign values to variables
+                
                 String moduleName = rs.getString("ModuleName");
                 String programme = rs.getString("Programme");
                 String numberOfStudents = rs.getString("NumberOfStudents");
