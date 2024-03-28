@@ -90,10 +90,10 @@ public class OutputCourse {
             printRowsToFile(courses, writer); // Rows information to file
             
         } catch (SQLException e) {
-            System.err.println("SQL error: " + e.getMessage());
+            System.err.println("SQL error : " + e.getMessage());
             e.printStackTrace();
         } catch (FileNotFoundException e) {
-            System.err.println("File not found error: " + e.getMessage());
+            System.err.println("File not found error : " + e.getMessage());
             e.printStackTrace();
         }
     }
