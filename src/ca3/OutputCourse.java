@@ -70,14 +70,14 @@ public class OutputCourse {
        // for (int i = 1; i <= columnCount; i++) {
         //    writer.print(metaData.getColumnLabel(i) + (i == columnCount ? "" : " - "));
        // }
-        writer.format("%-20s%-20s%-20s%-20s%-20s\n", "ModuleName", "Programme", "NumOfStudents", "LecturerName", "Classroom");
+        writer.format("%-30s%-30s%-30s%-30s%-30s\n", "ModuleName", "Programme", "NumOfStudents", "LecturerName", "Classroom");
     }
 
     // Print rows in a file
     
     public static void printRowsToFile(List<CourseReportConstructor> courses, PrintWriter writer) {
          for (CourseReportConstructor course : courses) {
-        writer.format("%-20s%-20s%-20s%-20s%-20s\n",
+        writer.format("%-30s%-30s%-30s%-30s%-30s\n",
                 course.getModuleName(),
                 course.getProgramme(),
                 course.getNumberOfStudents(),
@@ -105,7 +105,7 @@ public class OutputCourse {
             printRowsToFile(courses, writer); // Rows information to file
             
         } catch (SQLException e) {
-            System.err.println("SQL error: " + e.getMessage());
+            System.err.println("Error fetching course report data: " + e.getMessage());
             e.printStackTrace();
         } catch (FileNotFoundException e) {
             System.err.println("File not found error: " + e.getMessage());
@@ -149,7 +149,7 @@ public class OutputCourse {
             System.err.println("SQL error: " + e.getMessage());
             e.printStackTrace();
         } catch (FileNotFoundException e) {
-            System.err.println("File not found error: " + e.getMessage());
+            System.err.println("Error fetching course report data: "  + e.getMessage());
             e.printStackTrace();
         }
 }

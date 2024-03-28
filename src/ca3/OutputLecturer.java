@@ -99,7 +99,7 @@ public class OutputLecturer {
             printRowsToFile(lecturers, writer); // Rows information to file
             
         } catch (SQLException e) {
-            System.err.println("SQL error: " + e.getMessage());
+            System.err.println("Error fetching lecturer report data: "  + e.getMessage());
             e.printStackTrace();
         } catch (FileNotFoundException e) {
             System.err.println("File not found error: " + e.getMessage());
@@ -140,7 +140,7 @@ public class OutputLecturer {
             printRowsToCSV(lecturers, writer); // Rows information to CSV
             
         } catch (SQLException e) {
-            System.err.println("SQL error: " + e.getMessage());
+            System.err.println("Error fetching lecturer report data: "  + e.getMessage());
             e.printStackTrace();
         } catch (FileNotFoundException e) {
             System.err.println("File not found error: " + e.getMessage());
