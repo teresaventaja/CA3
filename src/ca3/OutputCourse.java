@@ -41,7 +41,7 @@ public class OutputCourse {
                 course.getNumberOfStudents(),
                 course.getLecturerName(),
                 course.getClassroom());
-    } 
+        } 
     }
         
     // Output method to call in Main - Print in the console
@@ -146,10 +146,10 @@ public class OutputCourse {
             printRowsToCSV(courses, writer); // Rows information to CSV
             
         } catch (SQLException e) {
-            System.err.println("SQL error: " + e.getMessage());
+            System.err.println("Error fetching student report data: " + e.getMessage());
             e.printStackTrace();
         } catch (FileNotFoundException e) {
-            System.err.println("Error fetching course report data: "  + e.getMessage());
+            System.err.println("File not found error: " + e.getMessage());
             e.printStackTrace();
         }
 }

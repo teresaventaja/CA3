@@ -1,51 +1,51 @@
-student - Programme - Enrolled Modules - Grades - ToRepeat
-Mr. Rupert Shields 3 - Applied programming - Mathematics - Mathematics 61.27 - false
-Chelsie Schmitt 4 - Applied programming - Data visualization - Data visualization 30.03 - true
-Kendrick Schamberger 8 - Data analytics - Database Administration - Database Administration 57.28 - false
-Bertram Marquardt 9 - Applied programming - Data visualization - Data visualization 35.31 - true
-Mrs. Catherine Jenkins 11 - Data analytics - Database Administration - Database Administration 41.26 - false
-Elda Boyle 15 - Data analytics - Mathematics - Mathematics 88.40 - false
-Kurt Jerde 18 - Data analytics - Python - Python 94.38 - false
-Soledad Dietrich 22 - Data analytics - Java - Java 42.22 - false
-Dr. Tianna Graham III 25 - Applied programming - Web development - Web development 5.76 - true
-Kaia Roberts 31 - Applied programming - Database Administration - Database Administration 68.88 - false
-Alycia Schulist Jr. 33 - Applied programming - Java - Java 44.30 - false
-Earlene Kovacek 42 - Data analytics - Python - Python 21.84 - true
-Jayme Bogisich 48 - Applied programming - Database Administration - Database Administration 60.76 - false
-Wilton Von 50 - Applied programming - Web development - Web development 31.65 - true
-Stacey Schiller 59 - Applied programming - Data visualization - Data visualization 43.59 - false
-Miss Norma Konopelski 60 - Applied programming - Database Administration - Database Administration 9.09 - true
-Alessandro Dietrich 62 - Data analytics - Java - Java 32.31 - true
-Addie Donnelly 68 - Data analytics - Python - Python 37.81 - true
-Concepcion Cole 73 - Data analytics - Mathematics - Mathematics 94.96 - false
-Jedidiah Goldner DVM 79 - Applied programming - Data visualization - Data visualization 92.71 - false
-Kris Sawayn 82 - Data analytics - Web development - Web development 23.44 - true
-Ahmad Schultz 88 - Data analytics - Data visualization - Data visualization 96.29 - false
-Eino Schmidt 89 - Applied programming - Mathematics - Mathematics 14.37 - true
-Declan Frami Sr. 90 - Applied programming - Web development - Web development 94.16 - false
-Franco Feeney 95 - Data analytics - Java - Java 14.17 - true
-Ryan Deckow 96 - Data analytics - Database Administration - Database Administration 89.26 - false
-Dr. Mina Hoeger 99 - Data analytics - Java - Java 47.51 - false
-Dr. Ivah Heathcote 107 - Data analytics - Mathematics - Mathematics 76.96 - false
-Art Marvin 108 - Data analytics - Database Administration - Database Administration 12.85 - true
-Prof. Kristian Johnston 111 - Data analytics - Database Administration - Database Administration 44.71 - false
-Hoyt Cremin V 121 - Data analytics - Data visualization - Data visualization 46.61 - false
-Prof. Braden Roberts V 126 - Data analytics - Database Administration - Database Administration 38.09 - true
-Mrs. Samanta Runte Jr. 132 - Data analytics - Web development - Web development 67.51 - false
-Benjamin Walsh 141 - Applied programming - Java - Java 22.07 - true
-Aida Ziemann II 146 - Data analytics - Database Administration - Database Administration 91.15 - false
-Ms. Alda Rogahn I 155 - Applied programming - Mathematics - Mathematics 50.11 - false
-Rahsaan Littel 157 - Data analytics - Mathematics - Mathematics 53.68 - false
-Yesenia Wunsch 158 - Data analytics - Database Administration - Database Administration 53.52 - false
-Amber Boyer 159 - Applied programming - Data visualization - Data visualization 65.64 - false
-Rachelle Gleason 163 - Applied programming - Python - Python 80.79 - false
-Rosanna Koss 164 - Data analytics - Java - Java 58.54 - false
-Dedric Reilly II 165 - Data analytics - Mathematics - Mathematics 20.29 - true
-Mrs. Kacie Romaguera 167 - Applied programming - Python - Python 96.50 - false
-Tyrell Gleichner 175 - Applied programming - Web development - Web development 78.76 - false
-Kirsten Kessler III 176 - Data analytics - Database Administration - Database Administration 28.77 - true
-Zoe Hessel 177 - Data analytics - Data visualization - Data visualization 23.32 - true
-Prof. Hailey Jakubowski 180 - Data analytics - Java - Java 19.86 - true
-Prof. Julius Hegmann 187 - Applied programming - Python - Python 40.54 - false
-Jacky Schuppe 194 - Applied programming - Data visualization - Data visualization 20.26 - true
-Felicia Pfannerstill IV 196 - Data analytics - Database Administration - Database Administration 84.39 - false
+Student                       Programme                     EnrolledModules               CompletedModulesAndGrades     ToRepeatModules               
+Mr. Rupert Shields 3          Applied programming           Mathematics                   Mathematics 61.27             false                         
+Chelsie Schmitt 4             Applied programming           Data visualization            Data visualization 30.03      true                          
+Kendrick Schamberger 8        Data analytics                Database Administration       Database Administration 57.28 false                         
+Bertram Marquardt 9           Applied programming           Data visualization            Data visualization 35.31      true                          
+Mrs. Catherine Jenkins 11     Data analytics                Database Administration       Database Administration 41.26 false                         
+Elda Boyle 15                 Data analytics                Mathematics                   Mathematics 88.40             false                         
+Kurt Jerde 18                 Data analytics                Python                        Python 94.38                  false                         
+Soledad Dietrich 22           Data analytics                Java                          Java 42.22                    false                         
+Dr. Tianna Graham III 25      Applied programming           Web development               Web development 5.76          true                          
+Kaia Roberts 31               Applied programming           Database Administration       Database Administration 68.88 false                         
+Alycia Schulist Jr. 33        Applied programming           Java                          Java 44.30                    false                         
+Earlene Kovacek 42            Data analytics                Python                        Python 21.84                  true                          
+Jayme Bogisich 48             Applied programming           Database Administration       Database Administration 60.76 false                         
+Wilton Von 50                 Applied programming           Web development               Web development 31.65         true                          
+Stacey Schiller 59            Applied programming           Data visualization            Data visualization 43.59      false                         
+Miss Norma Konopelski 60      Applied programming           Database Administration       Database Administration 9.09  true                          
+Alessandro Dietrich 62        Data analytics                Java                          Java 32.31                    true                          
+Addie Donnelly 68             Data analytics                Python                        Python 37.81                  true                          
+Concepcion Cole 73            Data analytics                Mathematics                   Mathematics 94.96             false                         
+Jedidiah Goldner DVM 79       Applied programming           Data visualization            Data visualization 92.71      false                         
+Kris Sawayn 82                Data analytics                Web development               Web development 23.44         true                          
+Ahmad Schultz 88              Data analytics                Data visualization            Data visualization 96.29      false                         
+Eino Schmidt 89               Applied programming           Mathematics                   Mathematics 14.37             true                          
+Declan Frami Sr. 90           Applied programming           Web development               Web development 94.16         false                         
+Franco Feeney 95              Data analytics                Java                          Java 14.17                    true                          
+Ryan Deckow 96                Data analytics                Database Administration       Database Administration 89.26 false                         
+Dr. Mina Hoeger 99            Data analytics                Java                          Java 47.51                    false                         
+Dr. Ivah Heathcote 107        Data analytics                Mathematics                   Mathematics 76.96             false                         
+Art Marvin 108                Data analytics                Database Administration       Database Administration 12.85 true                          
+Prof. Kristian Johnston 111   Data analytics                Database Administration       Database Administration 44.71 false                         
+Hoyt Cremin V 121             Data analytics                Data visualization            Data visualization 46.61      false                         
+Prof. Braden Roberts V 126    Data analytics                Database Administration       Database Administration 38.09 true                          
+Mrs. Samanta Runte Jr. 132    Data analytics                Web development               Web development 67.51         false                         
+Benjamin Walsh 141            Applied programming           Java                          Java 22.07                    true                          
+Aida Ziemann II 146           Data analytics                Database Administration       Database Administration 91.15 false                         
+Ms. Alda Rogahn I 155         Applied programming           Mathematics                   Mathematics 50.11             false                         
+Rahsaan Littel 157            Data analytics                Mathematics                   Mathematics 53.68             false                         
+Yesenia Wunsch 158            Data analytics                Database Administration       Database Administration 53.52 false                         
+Amber Boyer 159               Applied programming           Data visualization            Data visualization 65.64      false                         
+Rachelle Gleason 163          Applied programming           Python                        Python 80.79                  false                         
+Rosanna Koss 164              Data analytics                Java                          Java 58.54                    false                         
+Dedric Reilly II 165          Data analytics                Mathematics                   Mathematics 20.29             true                          
+Mrs. Kacie Romaguera 167      Applied programming           Python                        Python 96.50                  false                         
+Tyrell Gleichner 175          Applied programming           Web development               Web development 78.76         false                         
+Kirsten Kessler III 176       Data analytics                Database Administration       Database Administration 28.77 true                          
+Zoe Hessel 177                Data analytics                Data visualization            Data visualization 23.32      true                          
+Prof. Hailey Jakubowski 180   Data analytics                Java                          Java 19.86                    true                          
+Prof. Julius Hegmann 187      Applied programming           Python                        Python 40.54                  false                         
+Jacky Schuppe 194             Applied programming           Data visualization            Data visualization 20.26      true                          
+Felicia Pfannerstill IV 196   Data analytics                Database Administration       Database Administration 84.39 false                         
