@@ -27,7 +27,7 @@ public class StudentReportVariables {
     public static List<StudentReportConstructor> fetchStudentInfo(String url, String user, String password) {
     
         List<StudentReportConstructor> students = new ArrayList<>();
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
 

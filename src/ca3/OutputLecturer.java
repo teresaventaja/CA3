@@ -20,12 +20,6 @@ import java.util.List;
  */
 public class OutputLecturer {
     
-    // Connection to database
-    
-    String url = "jdbc:mysql://localhost:3306/ca3_2";
-    String user = "root";
-    String password = "root24";
-    
     // Method to output headings in the console
     
     public static void consoleHeadings(ResultSetMetaData metaData) throws SQLException {
@@ -51,7 +45,7 @@ public class OutputLecturer {
     
     List<LecturerReportConstructor> lecturers = LecturerReportVariables.fetchLecturerInfo(url, user, password);
         
-    try (Connection conn = DriverManager.getConnection(url, user, password);
+    try (Connection conn = DatabaseConnection.getConnection();
          PreparedStatement pstmt = conn.prepareStatement(LecturerReportVariables.sql);
          ResultSet rs = pstmt.executeQuery()) {
 
@@ -89,7 +83,7 @@ public class OutputLecturer {
 
         List<LecturerReportConstructor> lecturers = LecturerReportVariables.fetchLecturerInfo(url, user, password);
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(LecturerReportVariables.sql); 
              ResultSet rs = pstmt.executeQuery();
              PrintWriter writer = new PrintWriter(filePath)) {
@@ -130,7 +124,7 @@ public class OutputLecturer {
     public static void outputToCSV(String url, String user, String password, String csvPath) {
         List<LecturerReportConstructor> lecturers = LecturerReportVariables.fetchLecturerInfo(url, user, password);
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = DatabaseConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(LecturerReportVariables.sql);
             ResultSet rs = pstmt.executeQuery();
             PrintWriter writer = new PrintWriter(csvPath)) {

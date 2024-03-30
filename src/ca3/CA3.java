@@ -38,13 +38,6 @@ public class CA3 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        
-    // Connection to database
-    
-    String url = "jdbc:mysql://localhost:3306/ca3_2";
-    String user = "root";
-    String password = "root24";
-    
     // Variables to reference file paths
     
     String filePath = "C:\\Users\\User\\Documents\\NetBeansProjects\\CA3\\LecturerReport.txt";

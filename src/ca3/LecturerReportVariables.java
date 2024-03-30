@@ -25,7 +25,7 @@ public class LecturerReportVariables {
     
         List<LecturerReportConstructor> lecturers = new ArrayList<>();
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
 
