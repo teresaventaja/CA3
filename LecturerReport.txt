@@ -1,7 +1,7 @@
-Lecturer                      Role           ModulesTeaching     NumOfStudents       ModulesCanTeach               
-Candace Thompson              Programme managerDatabase Administration; Java9                   Data visualization; Database Administration; Java; Web development
-Eddy Murphy                   Professor      Mathematics; Python 9                   Python                        
-John Smith                    Programme managerDatabase Administration; Mathematics8                   Database Administration; Java 
-Michelle Grace                Senior lecturerData visualization; Mathematics4                   Data visualization; Mathematics
-Paul Smith                    Senior lecturerData visualization; Python; Web development13                  Data visualization; Python; Web development
-Therese Florin                Professor      Java                10                  Java; Python; Web development 
+Lecturer                      Role                          ModulesTeaching               NumOfStudents                 ModulesCanTeach               
+Candace Thompson              Programme manager             Database Administration; Java 9                             Data visualization; Database Administration; Java; Web development
+Eddy Murphy                   Professor                     Mathematics; Python           9                             Python                        
+John Smith                    Programme manager             Database Administration; Mathematics8                             Database Administration; Java 
+Michelle Grace                Senior lecturer               Data visualization; Mathematics4                             Data visualization; Mathematics
+Paul Smith                    Senior lecturer               Data visualization; Python; Web development13                            Data visualization; Python; Web development
+Therese Florin                Professor                     Java                          10                            Java; Python; Web development 

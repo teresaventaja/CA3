@@ -10,7 +10,7 @@ import java.util.Scanner;
  *
  * @author User
  */
-public class Officer extends User {
+public class Officer extends User implements MenuOptions {
     
     String url = "jdbc:mysql://localhost:3306/ca3_2";
     String user = "root";

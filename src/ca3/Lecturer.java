@@ -10,7 +10,7 @@ import java.util.Scanner;
  *
  * @author User
  */
-public class Lecturer extends User {
+public class Lecturer extends User implements MenuOptions {
     
     // Create an instance of lecturer
     

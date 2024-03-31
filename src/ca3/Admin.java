@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author User
  */
-public class Admin extends User {
+public class Admin extends User implements MenuOptions {
     
     // Create an Admin user constructor
 

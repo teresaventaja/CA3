@@ -75,13 +75,17 @@ public class ConsoleMenu {
             
             if (choice == 1) {
                 performLogin("ADMIN");
-            } else if (choice == 2 && userManager.hasRole("OFFICER")) {
-                performLogin("OFFICER");
-            } else if (userManager.hasRole("LECTURER")) {
-                performLogin("LECTURER");
             } else if (choice == optionNumber) {
-                exitApplication();
-            } else {
+            exitApplication();
+            } else if (choice < optionNumber) {
+                if (choice == 2 && userManager.hasRole("OFFICER")) {
+                performLogin("OFFICER");
+                } else if (choice == 3 && userManager.hasRole("LECTURER")) {
+                performLogin("LECTURER");  
+                } else if (choice == 2 && userManager.hasRole("LECTURER")) {
+                performLogin("LECTURER");  
+                }
+                } else {
                 System.out.println("Invalid choice. Please select a valid option.");
             }
         } catch (InputMismatchException e) {
@@ -90,6 +94,7 @@ public class ConsoleMenu {
         }
     }
 }
+
 
     // To use to display the login menu while option "exit application" is not set as true
     
@@ -103,41 +108,34 @@ public class ConsoleMenu {
     
     // Login menu
     
-    private void performLogin(String role) {
-
+    private void performLogin(String expectedRole) {
     System.out.println("Enter username:");
     String username = scanner.nextLine();
     System.out.println("Enter password:");
     String password = scanner.nextLine();
 
-    // Handdle login and ensuring they will be connected with the options for each specific role
-        
-    Optional<User> userOptional = userManager.getUser(username, password);  
-    
+    Optional<User> userOptional = userManager.getUser(username, password);
+
     if (userOptional.isPresent()) {
-        User user = userOptional.get(); // connect with user array in UserManager class so that we retrieve the user details
-        
-        
-        if (user.getRole().equals(role)) {
+        User user = userOptional.get();
+        String userRole = user.getRole().toUpperCase();
+
+        if (userRole.equals(expectedRole)) {
             System.out.println("Login successful.");
-
-            // Handle specific role actions
-            
-            if (user instanceof Officer) { // Officer login
-                ((Officer) user).handleOfficerActions(scanner, userManager, this);
-            } else if (user instanceof Admin) { // Admin login
+            // Handle role-specific actions here
+            if (user instanceof Admin) {
                 ((Admin) user).handleAdminActions(scanner, userManager, this);
-            } else if (user instanceof Lecturer) { // Lecturer login
+            } else if (user instanceof Officer) {
+                ((Officer) user).handleOfficerActions(scanner, userManager, this);
+            } else if (user instanceof Lecturer) {
                 ((Lecturer) user).handleLecturerActions(scanner, userManager, this);
-            } 
-            setShowLoginMenu(true); // Present login options
+            }
+            setShowLoginMenu(true);
         } else {
-            System.out.println("Login failed. Role does not match."); // Not presenting login options cause the role doesn't match
+            System.out.println("Login failed. Role does not match.");
         }
-        
     } else {
-        System.out.println("User not found or password incorrect."); // if UserManager arraylist didn't find the user we are looking for
+        System.out.println("User not found or password incorrect.");
     }
-    }
-
+}
 }

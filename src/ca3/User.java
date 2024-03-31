@@ -21,10 +21,6 @@ public abstract class User {
         this.role = role;
     }
 
-    // Abstract method to reuse in different type of users
-    
-    public abstract void showOptions();
-
     // Getters and setters
     
     public void setUsername(String newUsername) {
