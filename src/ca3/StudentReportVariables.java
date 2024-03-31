@@ -44,8 +44,7 @@ public class StudentReportVariables {
                 students.add(new StudentReportConstructor(student, programme, enrolledModules, completedModulesAndGrades, toRepeatModule));
             }
             } catch (SQLException e) {
-                System.err.println("SQL error.");
-                e.printStackTrace();
+                System.err.println("Error fetching student data: " + e.getMessage());
             }  
 
         return students;

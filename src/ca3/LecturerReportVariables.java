@@ -42,8 +42,7 @@ public class LecturerReportVariables {
                 lecturers.add(new LecturerReportConstructor(lecturer, role, modulesTeaching, numberOfStudents, modulesCanTeach));
             }
             } catch (SQLException e) {
-                System.err.println("SQL error.");
-                e.printStackTrace();
+                System.err.println("Error fetching lecturer data: " + e.getMessage());
             }  
 
         return lecturers; // Isolate our lecturers

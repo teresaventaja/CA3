@@ -45,8 +45,7 @@ public class CourseReportVariables {
                 modules.add(new CourseReportConstructor(moduleName, programme, numberOfStudents, lecturerName, classroom));
             }
             } catch (SQLException e) {
-                System.err.println("SQL error.");
-                e.printStackTrace();
+                System.err.println("Error fetching course data: " + e.getMessage());
             }  
 
         return modules;

@@ -23,7 +23,7 @@ public class Admin extends User {
 
     // Use abstract class from User to display menus for every user (Admin in this case)
     
-        @Override
+    @Override
     public void showOptions() {
         System.out.println("ADMIN MENU");
         System.out.println("1. Add user");
